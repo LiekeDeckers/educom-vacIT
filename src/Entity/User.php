@@ -71,9 +71,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vacature::class)]
     private Collection $vacatures;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Sollicitatie::class)]
+    private Collection $sollicitaties;
+
     public function __construct()
     {
         $this->vacatures = new ArrayCollection();
+        $this->sollicitaties = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -328,6 +332,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($vacature->getUser() === $this) {
                 $vacature->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sollicitatie>
+     */
+    public function getSollicitaties(): Collection
+    {
+        return $this->sollicitaties;
+    }
+
+    public function addSollicitaty(Sollicitatie $sollicitaty): self
+    {
+        if (!$this->sollicitaties->contains($sollicitaty)) {
+            $this->sollicitaties->add($sollicitaty);
+            $sollicitaty->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSollicitaty(Sollicitatie $sollicitaty): self
+    {
+        if ($this->sollicitaties->removeElement($sollicitaty)) {
+            // set the owning side to null (unless already changed)
+            if ($sollicitaty->getUser() === $this) {
+                $sollicitaty->setUser(null);
             }
         }
 

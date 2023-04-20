@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VacatureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,14 @@ class Vacature
 
     #[ORM\Column(length: 200)]
     private ?string $omschrijving = null;
+
+    #[ORM\OneToMany(mappedBy: 'vacature', targetEntity: Sollicitatie::class)]
+    private Collection $sollicitaties;
+
+    public function __construct()
+    {
+        $this->sollicitaties = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +130,36 @@ class Vacature
     public function setOmschrijving(string $omschrijving): self
     {
         $this->omschrijving = $omschrijving;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sollicitatie>
+     */
+    public function getSollicitaties(): Collection
+    {
+        return $this->sollicitaties;
+    }
+
+    public function addSollicitaty(Sollicitatie $sollicitaty): self
+    {
+        if (!$this->sollicitaties->contains($sollicitaty)) {
+            $this->sollicitaties->add($sollicitaty);
+            $sollicitaty->setVacature($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSollicitaty(Sollicitatie $sollicitaty): self
+    {
+        if ($this->sollicitaties->removeElement($sollicitaty)) {
+            // set the owning side to null (unless already changed)
+            if ($sollicitaty->getVacature() === $this) {
+                $sollicitaty->setVacature(null);
+            }
+        }
 
         return $this;
     }
