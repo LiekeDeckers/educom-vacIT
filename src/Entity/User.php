@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -65,6 +67,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?logo $logo = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vacature::class)]
+    private Collection $vacatures;
+
+    public function __construct()
+    {
+        $this->vacatures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -290,6 +300,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLogo(?logo $logo): self
     {
         $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vacature>
+     */
+    public function getVacatures(): Collection
+    {
+        return $this->vacatures;
+    }
+
+    public function addVacature(Vacature $vacature): self
+    {
+        if (!$this->vacatures->contains($vacature)) {
+            $this->vacatures->add($vacature);
+            $vacature->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVacature(Vacature $vacature): self
+    {
+        if ($this->vacatures->removeElement($vacature)) {
+            // set the owning side to null (unless already changed)
+            if ($vacature->getUser() === $this) {
+                $vacature->setUser(null);
+            }
+        }
 
         return $this;
     }

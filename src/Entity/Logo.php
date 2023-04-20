@@ -21,9 +21,13 @@ class Logo
     #[ORM\OneToMany(mappedBy: 'logo', targetEntity: User::class)]
     private Collection $users;
 
+    #[ORM\OneToMany(mappedBy: 'logo', targetEntity: Vacature::class)]
+    private Collection $vacatures;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->vacatures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Logo
             // set the owning side to null (unless already changed)
             if ($user->getLogo() === $this) {
                 $user->setLogo(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vacature>
+     */
+    public function getVacatures(): Collection
+    {
+        return $this->vacatures;
+    }
+
+    public function addVacature(Vacature $vacature): self
+    {
+        if (!$this->vacatures->contains($vacature)) {
+            $this->vacatures->add($vacature);
+            $vacature->setLogo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVacature(Vacature $vacature): self
+    {
+        if ($this->vacatures->removeElement($vacature)) {
+            // set the owning side to null (unless already changed)
+            if ($vacature->getLogo() === $this) {
+                $vacature->setLogo(null);
             }
         }
 
