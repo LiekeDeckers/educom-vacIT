@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -28,6 +29,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $voornaam = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $achternaam = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $geboortedatum = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $telefoonnummer = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $adress = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $postcode = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $woonplaats = null;
+
+    #[ORM\Column(length: 200)]
+    private ?string $motivatie = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $CV = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $profielfoto = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $bedrijf = null;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?logo $logo = null;
 
     public function getId(): ?int
     {
@@ -111,5 +148,149 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getVoornaam(): ?string
+    {
+        return $this->voornaam;
+    }
+
+    public function setVoornaam(string $voornaam): self
+    {
+        $this->voornaam = $voornaam;
+
+        return $this;
+    }
+
+    public function getAchternaam(): ?string
+    {
+        return $this->achternaam;
+    }
+
+    public function setAchternaam(string $achternaam): self
+    {
+        $this->achternaam = $achternaam;
+
+        return $this;
+    }
+
+    public function getGeboortedatum(): ?\DateTimeInterface
+    {
+        return $this->geboortedatum;
+    }
+
+    public function setGeboortedatum(\DateTimeInterface $geboortedatum): self
+    {
+        $this->geboortedatum = $geboortedatum;
+
+        return $this;
+    }
+
+    public function getTelefoonnummer(): ?string
+    {
+        return $this->telefoonnummer;
+    }
+
+    public function setTelefoonnummer(string $telefoonnummer): self
+    {
+        $this->telefoonnummer = $telefoonnummer;
+
+        return $this;
+    }
+
+    public function getAdress(): ?string
+    {
+        return $this->adress;
+    }
+
+    public function setAdress(string $adress): self
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getPostcode(): ?string
+    {
+        return $this->postcode;
+    }
+
+    public function setPostcode(string $postcode): self
+    {
+        $this->postcode = $postcode;
+
+        return $this;
+    }
+
+    public function getWoonplaats(): ?string
+    {
+        return $this->woonplaats;
+    }
+
+    public function setWoonplaats(string $woonplaats): self
+    {
+        $this->woonplaats = $woonplaats;
+
+        return $this;
+    }
+
+    public function getMotivatie(): ?string
+    {
+        return $this->motivatie;
+    }
+
+    public function setMotivatie(string $motivatie): self
+    {
+        $this->motivatie = $motivatie;
+
+        return $this;
+    }
+
+    public function getCV(): ?string
+    {
+        return $this->CV;
+    }
+
+    public function setCV(string $CV): self
+    {
+        $this->CV = $CV;
+
+        return $this;
+    }
+
+    public function getProfielfoto(): ?string
+    {
+        return $this->profielfoto;
+    }
+
+    public function setProfielfoto(string $profielfoto): self
+    {
+        $this->profielfoto = $profielfoto;
+
+        return $this;
+    }
+
+    public function getBedrijf(): ?string
+    {
+        return $this->bedrijf;
+    }
+
+    public function setBedrijf(string $bedrijf): self
+    {
+        $this->bedrijf = $bedrijf;
+
+        return $this;
+    }
+
+    public function getLogo(): ?logo
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?logo $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
     }
 }
