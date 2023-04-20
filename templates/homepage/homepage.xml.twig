@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data>
+{% block body %}
+
+    <optredens>
+        {% for record in data  %}
+            <id> {{record.id}} </id>
+            <poppodium> {{record.poppodium.id}} </poppodium>
+            <artiest> {{record.artiest.id}} </artiest>
+            <voorprogramma> {{record.voorprogramma.id}} </voorprogramma> 
+            <omschrijving> {{record.omschrijving}} </omschrijving>
+            <datum> {{record.datum|date('d-m-Y')}} </datum>
+            <prijs> {{record.prijs}} </prijs>  
+            <ticket> {{record.ticketUrl}} </ticket>
+            <afbeelding> {{record.afbeeldingUrl}} </afbeelding>
+        {% endfor %}
+
+    </optredens>
+
+{% endblock %}
+</data>

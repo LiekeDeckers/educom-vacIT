@@ -1,0 +1,19 @@
+{% block body %}
+
+    {% for optreden in optredens %}
+        {"optreden": [ 
+            {
+                "poppodium": {{optreden.Poppodium.Naam}},
+                "hoofdprogramma": {{optreden.Artiest.Naam}},
+                "voorprogramma": {{optreden.Voorprogramma.Naam}},
+                "omschrijving": {{optreden.omschrijving}},
+                "datum": {{optreden.Datum|date('y-m-d H:i')}},
+                "prijs": {{optreden.Prijs }},
+                "ticket": {{optreden.TicketUrl}},
+                "afbeelding": {{optreden.AfbeeldingUrl}},
+            }
+        ]}
+
+    {% endfor %}
+
+{% endblock %}
