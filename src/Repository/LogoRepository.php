@@ -26,11 +26,10 @@ class LogoRepository extends ServiceEntityRepository
         return($logos);
     }
 
-    /*
-    public function getLogo($id) {
+    public function findLogo($id) {
         $logo = $this->find($id);
         return($logo);
     }
-    */
+    
 }
  

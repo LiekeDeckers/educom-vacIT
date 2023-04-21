@@ -29,6 +29,11 @@ class VacatureRepository extends ServiceEntityRepository
         return($vacatures);
     }
 
+    public function findVacature($id) {
+        $vacature = $this->find($id);
+        return($vacature);
+    }
+
     public function saveVacature($params) {
 
         if(isset($params["id"]) && $params["id"] != "") {
@@ -49,6 +54,14 @@ class VacatureRepository extends ServiceEntityRepository
         $this->_em->flush();
 
         return($vacature);
+        
+    }
+
+    public function UpdateVacature($id) {
+        
+    }
+
+    public function removeVacature($id) {
         
     }
 
