@@ -3,6 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Vacature;
+use App\Entity\User; 
+use App\Entity\Logo;
+
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,46 +24,32 @@ class VacatureRepository extends ServiceEntityRepository
         parent::__construct($registry, Vacature::class);
     }
 
-    public function save(Vacature $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+    public function getAllVacatures() {
+        $vacatures = $this->findAll();
+        return($vacatures);
     }
 
-    public function remove(Vacature $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
+    public function saveVacature($params) {
 
-        if ($flush) {
-            $this->getEntityManager()->flush();
+        if(isset($params["id"]) && $params["id"] != "") {
+            $vacature = $this->find($params["id"]);
+        } else {
+            $vacature = new Vacature();
         }
+        
+        $vacature->setLogo($params["logo"]);
+        $vacature->setUser($params["user"]);
+        $vacature->setTitel($params["titel"]);
+        $vacature->setDatum($params["datum"]);
+        $vacature->setNiveau($params["niveau"]);
+        $vacature->setPlaats($params["plaats"]);
+        $vacature->setOmschrijving($params["omschrijving"]);
+
+        $this->_em->persist($vacature);
+        $this->_em->flush();
+
+        return($vacature);
+        
     }
 
-//    /**
-//     * @return Vacature[] Returns an array of Vacature objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('v')
-//            ->andWhere('v.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('v.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Vacature
-//    {
-//        return $this->createQueryBuilder('v')
-//            ->andWhere('v.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }
