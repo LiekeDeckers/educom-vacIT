@@ -12,12 +12,12 @@ use App\Service\VacatureService;
 //#[Route('/vacature')]
 class VacatureController extends AbstractController
 {
-    private $vs; 
+    /* private $vs; 
 
     public function __construct(VacatureService $vs) {
         $this->vs = $vs;      
     }
-    
+    */
     //#[Route('/vacature', name: 'vacature')]
     //#[Template()]
     /*

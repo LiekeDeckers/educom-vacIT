@@ -21,4 +21,16 @@ class LogoRepository extends ServiceEntityRepository
         parent::__construct($registry, Logo::class);
     }
 
+    public function getAllLogos() {
+        $logos = $this->findAll();
+        return($logos);
+    }
+
+    /*
+    public function getLogo($id) {
+        $logo = $this->find($id);
+        return($logo);
+    }
+    */
 }
+ 

@@ -10,32 +10,37 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 //use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\Vacature;
+use App\Entity\Logo;
 
 
 #[Route('/')]
-class HomepageController extends AbstractController
-{
+class HomepageController extends BaseController
+{   /*
     private $vs; 
 
     public function __construct(VacatureService $vs) {
         $this->vs = $vs;      
     } 
-    
+    */
     #[Route('/', name: 'homepage')]
     #[Template()]
+    /*
     public function index(): Response
         {
             return $this->render('homepage/index.html.twig', [
                 'controller_name' => 'HomepageController',
             ]);
         }
-        /* 
-        {
-        $rep = $this->getDoctrine()->getRepository(Vacature::class);
-        $data = $rep->getAllVacatures();
+    */
 
-        dd($data);
-    } */
+    public function index() 
+    {
+        $rep = $this->getDoctrine()->getRepository(Logo::class);
+        $data = $rep->getAllLogos();
+
+        dump($data);
+        die();
+    }
 
     #[Route('/backhome', name: 'backhome')]
     public function backhome() {
