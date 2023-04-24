@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Service\VacatureService;
 
 #[Route('/vacature')]
-class VacatureController extends AbstractController
+class VacatureController extends BaseController
 {
     private $vs; 
 
@@ -39,7 +39,7 @@ class VacatureController extends AbstractController
         ];
   
           $result = $this->vs->saveVacature($vacature);
-          dd($result);
+          return($result);
     }
     
 }

@@ -23,15 +23,7 @@ class HomepageController extends BaseController
     
     #[Route('/', name: 'homepage')]
     #[Template()]
-    
-    public function index(): Response
-        {
-            return $this->render('homepage/index.html.twig', [
-                'controller_name' => 'HomepageController',
-            ]);
-        }
-
-    public function showVacatures () {
+    public function index () {
         $vacatures = $this->vs->getAllVacatures();
         return($vacatures);
     }
