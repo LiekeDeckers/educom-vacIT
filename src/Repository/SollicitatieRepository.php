@@ -21,46 +21,46 @@ class SollicitatieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sollicitatie::class);
     }
 
-    public function save(Sollicitatie $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+    public function getSollicitatie($id) {
+        $sollicitatie = $this->find($id);
+        return($sollicitatie);
     }
 
-    public function remove(Sollicitatie $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+    public function getSollicitaties($vacature_id) {
+        $sollicitaties = $this->findBy(['vacature' => $vacature_id]);
+        return($sollicitaties);
     }
 
-//    /**
-//     * @return Sollicitatie[] Returns an array of Sollicitatie objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function mijnSollicitaties($user_id) {
+        $mijnsollicitaties = $this->findBy(['user' => $user_id]);
+        return($mijnsollicitaties);
+    }
 
-//    public function findOneBySomeField($value): ?Sollicitatie
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function saveSollicitatie($params) {
+        if(isset($params["id"]) && $params["id"] != "") {
+            $sollicitatie = $this->find($params["id"]);
+        } else {
+            $sollicitatie = new Sollicitatie();
+        }
+        
+        $sollicitatie->setVacature($params["logo"]);
+        $sollicitatie->setUser($params["user"]);
+        $sollicitatie->setUitgenodigd($params["uitgenodigd"]);
+
+        $this->_em->persist($sollicitatie);
+        $this->_em->flush();
+
+        return($sollicitatie);
+    }
+
+    public function removeSollicitatie($id) {
+        $sollicitatie = $this->find($id);
+        if($sollicitatie) {
+            $this->_em->remove($sollicitatie);
+            $this->_em->flush();
+            return(true);
+        }
+    
+        return(false);
+    }
 }
