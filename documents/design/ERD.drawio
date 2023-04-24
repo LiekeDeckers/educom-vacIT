@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="swatAk5gQJxMhcXhR5sl" name="Page-1">
-        <mxGraphModel dx="816" dy="424" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="767" dy="424" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -13,7 +13,7 @@
                 <mxCell id="8" value="&lt;font color=&quot;#000000&quot;&gt;USER&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCFFFF;strokeColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="320" y="80" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="id&lt;br&gt;role&lt;br&gt;email&lt;br&gt;wachtwoord&lt;br&gt;voornaam&lt;br&gt;achternaam&lt;br&gt;geboortedatum&lt;br&gt;telefoonnummer&lt;br&gt;adress&lt;br&gt;postcode&lt;br&gt;woonplaats&lt;br&gt;motivatie&amp;nbsp;&lt;br&gt;CV&lt;br&gt;profielfoto&lt;br&gt;naam_bedrijf&lt;br&gt;logo" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontColor=#000000;" parent="1" vertex="1">
+                <mxCell id="9" value="id&lt;br&gt;roles&lt;br&gt;username&lt;br&gt;wachtwoord&lt;br&gt;voornaam&lt;br&gt;achternaam&lt;br&gt;geboortedatum&lt;br&gt;telefoonnummer&lt;br&gt;adress&lt;br&gt;postcode&lt;br&gt;woonplaats&lt;br&gt;motivatie&amp;nbsp;&lt;br&gt;CV&lt;br&gt;profielfoto&lt;br&gt;naam_bedrijf&lt;br&gt;logo_id" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="320" y="110" width="120" height="250" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" value="&lt;font color=&quot;#000000&quot;&gt;SOLLICITATIE&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCFFFF;strokeColor=#000000;" parent="1" vertex="1">
