@@ -17,18 +17,18 @@ class VacatureController extends BaseController
     public function __construct(VacatureService $vs) {
         $this->vs = $vs;      
     }
-    
-    #[Route('/{vacature_id}', name: 'vacature')]
+
+    #[Route('/show/{id}', name: 'vacature_show')]
     #[Template()]
-    public function showVacature() {
-        $vacature = $this->vs->findVacature($vacature_id);
-        return($vacatures);
+    public function showVacature($id) {
+        $vacature = $this->vs->getVacature($id);
+        dd($vacature);
     }
 
     #[Route('/save', name: 'vacature_save')] 
     public function saveVacature() {
         $vacature = [
-            "id" => 2,
+            "id" => 3,
             "titel" => 'Software Developper',
             "datum" => '2023-04-24',
             "niveau" => 'Medior',
@@ -38,8 +38,8 @@ class VacatureController extends BaseController
             "user" => 2,
         ];
   
-          $result = $this->vs->saveVacature($vacature);
-          return($result);
+        $result = $this->vs->saveVacature($vacature);
+        return($result);
     }
     
 }
