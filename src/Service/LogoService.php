@@ -13,4 +13,7 @@ class LogoService {
         $this->logoRepository = $em->getRepository(Logo::class);
     }
 
+    public function fetchLogo($id) {
+        return($this->logoRepository->getLogo($id));
+    }
 }

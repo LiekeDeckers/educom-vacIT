@@ -21,11 +21,11 @@ class VacatureService {
 
     private function fetchUser($id = null) {
         if(is_null($id)) return(null);
-        return($this->userRepository->fetchUser($id));
+        return($this->userRepository->getUser($id));
     }
 
     private function fetchLogo($id) {
-        return($this->logoRepository->fetchLogo($id));
+        return($this->logoRepository->getLogo($id));
     }
 
     public function saveVacature($params) {

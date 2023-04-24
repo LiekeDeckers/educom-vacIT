@@ -21,7 +21,7 @@ class LogoRepository extends ServiceEntityRepository
         parent::__construct($registry, Logo::class);
     }
 
-    public function fetchLogo($id) {
+    public function getLogo($id) {
         return($this->find($id));
     }
     
