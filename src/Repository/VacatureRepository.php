@@ -29,7 +29,7 @@ class VacatureRepository extends ServiceEntityRepository
         return($vacatures);
     }
 
-    public function findVacature($id) {
+    public function getVacature($id) {
         $vacature = $this->find($id);
         return($vacature);
     }
@@ -57,12 +57,15 @@ class VacatureRepository extends ServiceEntityRepository
         
     }
 
-    public function UpdateVacature($id) {
-        
-    }
-
     public function removeVacature($id) {
-        
+        $vacature = $this->find($id);
+        if($vacature) {
+            $this->_em->remove($vacature);
+            $this->_em->flush();
+            return(true);
+        }
+    
+        return(false);
     }
 
 }

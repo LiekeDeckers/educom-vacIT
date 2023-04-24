@@ -44,15 +44,14 @@ class VacatureService {
           return($result);
     }
 
-    public function findVacature($id)
-    {
-        return $this->rep->findVacature($id);
-    }
-
-
     public function getAllVacatures()
     {
-        return $this->rep->getAllVacatures();
+        return $this->vacatureRepository->getAllVacatures();
+    }
+
+    public function getVacature($id)
+    {
+        return $this->vacatureRepository->getVacature($id);
     }
 
 }

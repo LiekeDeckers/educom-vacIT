@@ -9,34 +9,37 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use App\Service\VacatureService;
 
-//#[Route('/vacature')]
+#[Route('/vacature')]
 class VacatureController extends AbstractController
 {
-    /* private $vs; 
+    private $vs; 
 
     public function __construct(VacatureService $vs) {
         $this->vs = $vs;      
     }
-    */
-    //#[Route('/vacature', name: 'vacature')]
-    //#[Template()]
-    /*
-    public function index(): Response
-    {
-        return $this->render('vacature/index.html.twig', [
-            'controller_name' => 'VacatureController',
-        ]);
-    } */
-
-    public function showVacatures() {
-        $vacatures = $this->vs->getAllVacatures();
-        return($vacatures);
-    }
-
+    
+    #[Route('/{vacature_id}', name: 'vacature')]
+    #[Template()]
     public function showVacature() {
         $vacature = $this->vs->findVacature($vacature_id);
         return($vacatures);
     }
 
+    #[Route('/save', name: 'vacature_save')] 
+    public function saveVacature() {
+        $vacature = [
+            "id" => 2,
+            "titel" => 'Software Developper',
+            "datum" => '2023-04-24',
+            "niveau" => 'Medior',
+            "plaats" => 'Sittard',
+            "omschrijving" => 'blablabla',              
+            "logo" => 2,
+            "user" => 2,
+        ];
+  
+          $result = $this->vs->saveVacature($vacature);
+          dd($result);
+    }
     
 }

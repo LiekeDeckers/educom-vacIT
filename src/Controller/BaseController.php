@@ -10,9 +10,7 @@ use Psr\Log\LoggerInterface;
 class BaseController extends AbstractController
 {
 
-    public function __construct() {
-        
-    } 
+    
 
     /*
     public function index(): Response {
