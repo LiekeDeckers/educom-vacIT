@@ -51,7 +51,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setMotivatie($params["motivatie"]);
         $user->setCv($params["cv"]);
         $user->setProfielfoto($params["profielfoto"]);
-        $user->setLogo($params["bedrijf"]);
+        $user->setBedrijf($params["bedrijf"]);
 
         $this->_em->persist($user);
         $this->_em->flush();

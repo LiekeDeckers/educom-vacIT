@@ -40,30 +40,18 @@ class SollicitatieService {
     }
 
     public function saveSollicitatie($params) {
-        if(isset($params["id"]) && $params["id"] != "") {
-            $sollicitatie = $this->find($params["id"]);
-        } else {
-            $sollicitatie = new Sollicitatie();
-        }
-        
-        $sollicitatie->setVacature($params["logo"]);
-        $sollicitatie->setUser($params["user"]);
-        $sollicitatie->setUitgenodigd($params["uitgenodigd"]);
-
-        $this->_em->persist($sollicitatie);
-        $this->_em->flush();
-
-        return($sollicitatie);
+        $data = [
+            "id" => (isset($params["id"]) && $params["id"] != "") ? $params["id"] : null,
+            "vacature" => $this->fetchVacature($params["vacature"]),
+            "user" => $this->fetchUser($params["user"]),
+            "uitgenodigd" => $params["uitgenodigd"],              
+        ];
+  
+          $result = $this->sollicitatieRepository->saveSollicitatie($data);
+          return($result);
     }
 
     public function removeSollicitatie($id) {
-        $sollicitatie = $this->find($id);
-        if($sollicitatie) {
-            $this->_em->remove($sollicitatie);
-            $this->_em->flush();
-            return(true);
-        }
-    
-        return(false);
+        return $this->sollicitatieRepository->removeSollicitatie($id);
     }    
 }
