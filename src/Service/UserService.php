@@ -20,7 +20,7 @@ class UserService {
         return($this->logoRepository->getLogo($id));
     }
 
-    public function fetchUser($id) {
+    public function getUser($id) {
         return $this->userRepository->getUser($id);
     }
 

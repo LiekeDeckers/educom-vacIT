@@ -22,9 +22,10 @@ class VacatureController extends BaseController
     #[Template()]
     public function showVacature($id) {
         $vacature = $this->vs->getVacature($id);
-        dd($vacature);
+        return($vacature);
     }
 
+/*
     #[Route('/save', name: 'vacature_save')] 
     public function saveVacature() {
         $vacature = [
@@ -41,5 +42,5 @@ class VacatureController extends BaseController
         $result = $this->vs->saveVacature($vacature);
         return($result);
     }
-    
+*/    
 }

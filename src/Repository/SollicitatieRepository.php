@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Sollicitatie;
+use App\Entity\Vacature;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -43,7 +45,7 @@ class SollicitatieRepository extends ServiceEntityRepository
             $sollicitatie = new Sollicitatie();
         }
         
-        $sollicitatie->setVacature($params["logo"]);
+        $sollicitatie->setVacature($params["vacature"]);
         $sollicitatie->setUser($params["user"]);
         $sollicitatie->setUitgenodigd($params["uitgenodigd"]);
 

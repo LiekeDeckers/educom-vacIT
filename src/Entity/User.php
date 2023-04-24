@@ -23,7 +23,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $username;
 
-    #[ORM\Column]
+    /**
+     * @ORM\Column(type="json")
+     */
     private array $roles = [];
 
     /**
@@ -66,7 +68,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $bedrijf = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    private ?logo $logo = null;
+    private ?Logo $logo = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Vacature::class)]
     private Collection $vacatures;
@@ -296,12 +298,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getLogo(): ?logo
+    public function getLogo(): ?Logo
     {
         return $this->logo;
     }
 
-    public function setLogo(?logo $logo): self
+    public function setLogo(?Logo $logo): self
     {
         $this->logo = $logo;
 
