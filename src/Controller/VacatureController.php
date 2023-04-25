@@ -25,9 +25,8 @@ class VacatureController extends BaseController
         return($vacature);
     }
 
-/*
-    #[Route('/save', name: 'vacature_save')] 
-    public function saveVacature() {
+    #[Route('/add/{id}', name: 'vacature_add')] 
+    public function addVacature() {
         $vacature = [
             "id" => 3,
             "titel" => 'Software Developper',
@@ -42,5 +41,5 @@ class VacatureController extends BaseController
         $result = $this->vs->saveVacature($vacature);
         return($result);
     }
-*/    
+        
 }

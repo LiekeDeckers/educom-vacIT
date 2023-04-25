@@ -53,6 +53,7 @@ class VacatureService {
           $result = $this->vacatureRepository->saveVacature($data);
           return($result);
     }
+    
     public function removeVacature($id)
     {
         return $this->vacatureRepository->removeVacature($id);

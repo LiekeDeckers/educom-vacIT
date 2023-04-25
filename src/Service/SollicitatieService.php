@@ -27,8 +27,8 @@ class SollicitatieService {
         return($this->vacatureRepository->getVacature($id));
     }
 
-    public function getSollicitatie($id) {
-        return $this->sollicitatieRepository->getSollicitatie($id);
+    public function getSollicitatie($user_id, $vacature_id) {
+        return $this->sollicitatieRepository->getSollicitatie($user_id, $vacature_id);
     }
 
     public function getSollicitaties($vacature_id) {
