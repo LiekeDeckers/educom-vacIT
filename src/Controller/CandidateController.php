@@ -31,13 +31,37 @@ class CandidateController extends BaseController
         return(['user' => $user]);
     }
 
+    #[Route('/save', name: 'candidate_save')]
+    #[Template()]
+    public function saveUser() {
+        $user = [
+            "id" => '',
+            "username" => '',
+            "roles" => [],
+            "password" => '',
+            "logo" => '',
+            "voornaam" => '',
+            "achternaam" => '',
+            "geboortedatum" => '',
+            "telefoonnummer" => '',
+            "adress" => '',
+            "postcode" => '',
+            "woonplaats" => '',
+            "motivatie" => '',
+            "cv" => '',
+            "profielfoto" => '',
+        ];
+    }
+
     #[Route('/mijnsollicitaties/{user_id}', name: 'candidate_solicitaties')]
-    public function showSolicitaties($user_id) {
+    #[Template()]
+    public function showSollicitaties($user_id) {
         $sollicitaties = $this->ss->mijnSollicitaties($user_id);
-        return($sollicitaties);
+        return(['sollicitaties' => $sollicitaties]);
     }
 
     #[Route('/{user_id}/add/{vacature_id}', name: 'candidate_add_solicitatie')]
+    #[Template()]
     public function addSollicitatie() {
         $sollicitatie = [
             "id" => 3,

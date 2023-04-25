@@ -18,14 +18,15 @@ class VacatureController extends BaseController
         $this->vs = $vs;      
     }
 
-    #[Route('/show/{id}', name: 'vacature_show')]
+    #[Route('/show/{id}', name: 'show_vacature')]
     #[Template()]
     public function showVacature($id) {
         $vacature = $this->vs->getVacature($id);
-        return($vacature);
+        return(['vacature' => $vacature]);
     }
 
-    #[Route('/add/{id}', name: 'vacature_add')] 
+    #[Route('/add/{id}', name: 'add_vacature')]
+    #[Template()] 
     public function addVacature() {
         $vacature = [
             "id" => 3,
