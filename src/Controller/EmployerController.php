@@ -38,7 +38,7 @@ class EmployerController extends BaseController
     }
 
     //update vacature
-    #[Route('/{user_id}/update/{vacature_id}', name: 'update_vacature', methods: 'POST')]
+    #[Route('/{user_id}/{vacature_id}/update', name: 'update_vacature', methods: 'POST')]
     #[Template()]
     public function updateVacature(Request $request, $user_id, $vacature_id) {
         $params = $request->request->all();
@@ -50,7 +50,7 @@ class EmployerController extends BaseController
     }
 
     // verwijderen vacature
-    #[Route('/{user_id}/verwijder/{vacature_id}', name: 'verwijder_vacature', methods: 'POST')]
+    #[Route('/{user_id}/{vacature_id}/verwijder', name: 'verwijder_vacature', methods: 'POST')]
     #[Template()]
     public function removeVacature(Request $request, $vacature_id) {
         $result = $this->vs->removeVacature($vacature_id);

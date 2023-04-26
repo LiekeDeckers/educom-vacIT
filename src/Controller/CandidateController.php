@@ -33,31 +33,29 @@ class CandidateController extends BaseController
         return(['user' => $user]);
     }
 
-    // toevoegen/update user
-    #[Route('/save', name: 'candidate_save')]
+    // toevoegen user
+    #[Route('/add', name: 'add_candidate', methods: 'POST')]
     #[Template()]
-    public function saveUser() {
-        $user = [
-            "id" => '',
-            "username" => '',
-            "roles" => [],
-            "password" => '',
-            "logo" => '',
-            "voornaam" => '',
-            "achternaam" => '',
-            "geboortedatum" => '',
-            "telefoonnummer" => '',
-            "adress" => '',
-            "postcode" => '',
-            "woonplaats" => '',
-            "motivatie" => '',
-            "cv" => '',
-            "profielfoto" => '',
-        ];
+    public function addUser(Request $request) {
+        $params = $request->request->all();
+
+        $result = $this->us->saveUser($params);
+        return($result);
+    }
+
+    // update user
+    #[Route('/{user_id}/update', name: 'update_candidate', methods: 'POST')]
+    #[Template()]
+    public function updateUser(Request $request, $user_id) {
+        $params = $request->request->all();
+        $params['user_id'] = $user_id;
+
+        $result = $this->us->saveUser($params);
+        return($result);
     }
 
     // mijn sollicitaties
-    #[Route('/mijnsollicitaties/{user_id}', name: 'candidate_solicitaties')]
+    #[Route('/{user_id}/mijnsollicitaties', name: 'candidate_solicitaties')]
     #[Template()]
     public function showSollicitaties($user_id) {
         $sollicitaties = $this->ss->mijnSollicitaties($user_id);
@@ -65,7 +63,7 @@ class CandidateController extends BaseController
     }
 
     // toevoegen sollicitatie
-    #[Route('/{user_id}/add/{vacature_id}', name: 'add_solicitatie', methods: 'POST')]
+    #[Route('/{user_id}/{vacature_id}/add', name: 'add_solicitatie', methods: 'POST')]
     #[Template()]
     public function addSollicitatie(Request $request, $user_id, $vacature_id) {
         $params = $request->request->all();
@@ -77,7 +75,7 @@ class CandidateController extends BaseController
     }
 
     //verwijder sollicitatie
-    #[Route('/verwijder/{sollicitatie_id}', name: 'verwijder_sollicitatie', methods: 'POST')]
+    #[Route('/{sollicitatie_id}/verwijder', name: 'verwijder_sollicitatie', methods: 'POST')]
     #[Template()]
     public function removesollicitatie(Request $request, $sollicitatie_id) {
         $result = $this->ss->removeSollicitatie($sollicitatie_id);
