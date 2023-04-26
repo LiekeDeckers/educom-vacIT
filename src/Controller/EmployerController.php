@@ -42,15 +42,26 @@ class EmployerController extends BaseController
     }
 
     // toevoegen vacature
-    #[Route('/{user_id}/add', name: 'add_vacature', methods: 'POST')]
+    #[Route('/add', name: 'add_vacature', methods: 'POST')]
     #[Template()]
+    public function addVacature(Request $request) {
+        $vacature = new Vacature($request->request->all());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($vacature);
+        $em->flush($vacature);
+
+        return $this->redirectToRoute('employer_vacatures');
+    }
+
+    /*
     public function addVacature(Request $request, $user_id) {
         $params = $request->request->all();
         $params['user_id'] = $user_id;
 
         $result = $this->vs->saveVacature($params);
         return($result);
-    }
+    }*/
 
     //update vacature
     #[Route('/{user_id}/{vacature_id}/update', name: 'update_vacature', methods: 'POST')]

@@ -3,5 +3,33 @@
 {% block title %}Hello CandidateController!{% endblock %}
 
 {% block body %}
+     <h1>Vacature toevoegen</h1>
+    
+    <form action="{{ path('add_vacature') }}" method="POST">
+        <label for="titel">Titel:</label>
+        <input type="text" name="titel"><br>
 
+        <label for="datum">Datum:</label>
+        <input type="date" name="datum"><br>
+
+        <label for="niveau">Niveau:</label>
+        <input type="text" name="niveau"><br>
+
+        <label for="plaats">Plaats:</label>
+        <input type="text" name="plaats"><br>
+
+        <label for="omschrijving">Omschrijving:</label>
+        <input type="text" name="omschrijving"><br>
+
+        <input type="submit" name="btnSubmit" value="Toevoegen">
+
+    <h1>Vacatures overview</h1>
+    {% if vacatures|length == 0 %}
+        <h3>Geen vacatures</h3>
+    {% endif %}
+    <ul>
+        {% for vacature in vacatures %}
+            <li>{{ vacature.titel }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

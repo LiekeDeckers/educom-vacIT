@@ -50,10 +50,10 @@ class VacatureService {
             "omschrijving" => $params["omschrijving"],              
             "logo" => $this->fetchLogo($params["logo_id"]),
             "user" => $this->fetchUser($params["user_id"]),
-        ];
+        ]; 
   
-          $result = $this->vacatureRepository->saveVacature($data);
-          return($result);
+        $result = $this->vacatureRepository->saveVacature($data);
+        return($result);   
     }
     
     public function removeVacature($vacature_id)
