@@ -65,20 +65,22 @@ class CandidateController extends BaseController
     }
 
     // toevoegen sollicitatie
-    #[Route('/{user_id}/add/{vacature_id}', name: 'candidate_add_solicitatie')]
+    #[Route('/{user_id}/add/{vacature_id}', name: 'add_solicitatie', methods: 'POST')]
     #[Template()]
-    public function addSollicitatie() {
-        $sollicitatie = [
-            "id" => 3,
-            "vacature" => 2,
-            "user" => 1,
-            "uitgenodigd" => 0,              
-        ];
-  
-        $result = $this->ss->saveSollicitatie($sollicitatie);
+    public function addSollicitatie(Request $request, $user_id, $vacature_id) {
+        $params = $request->request->all();
+        $params['user_id'] = $user_id;
+        $params['vacature_id'] = $vacature_id;
+
+        $result = $this->ss->saveSollicitatie($params);
         return($result);
     }
 
     //verwijder sollicitatie
-
+    #[Route('/verwijder/{sollicitatie_id}', name: 'verwijder_sollicitatie', methods: 'POST')]
+    #[Template()]
+    public function removesollicitatie(Request $request, $sollicitatie_id) {
+        $result = $this->ss->removeSollicitatie($sollicitatie_id);
+        return($result);
+    }
 }

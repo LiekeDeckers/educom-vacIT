@@ -42,8 +42,8 @@ class SollicitatieService {
     public function saveSollicitatie($params) {
         $data = [
             "id" => (isset($params["id"]) && $params["id"] != "") ? $params["id"] : null,
-            "vacature" => $this->fetchVacature($params["vacature"]),
-            "user" => $this->fetchUser($params["user"]),
+            "vacature" => $this->fetchVacature($params["vacature_id"]),
+            "user" => $this->fetchUser($params["user_id"]),
             "uitgenodigd" => $params["uitgenodigd"],              
         ];
   

@@ -28,6 +28,7 @@ class EmployerController extends BaseController
 
     // toevoegen vacature
     #[Route('/{user_id}/add', name: 'add_vacature', methods: 'POST')]
+    #[Template()]
     public function addVacature(Request $request, $user_id) {
         $params = $request->request->all();
         $params['user_id'] = $user_id;
@@ -36,24 +37,9 @@ class EmployerController extends BaseController
         return($result);
     }
 
-    /*public function addVacature() {
-        $vacature = [
-            "id" => 3,
-            "logo_id" => 2,
-            "user_id" => 2,
-            "titel" => 'Software Developper',
-            "datum" => '2023-04-24',
-            "niveau" => 'Medior',
-            "plaats" => 'Sittard',
-            "omschrijving" => 'blablabla',
-        ];
-  
-        $result = $this->vs->saveVacature($vacature);
-        return($result);
-    } */
-
     //update vacature
     #[Route('/{user_id}/update/{vacature_id}', name: 'update_vacature', methods: 'POST')]
+    #[Template()]
     public function updateVacature(Request $request, $user_id, $vacature_id) {
         $params = $request->request->all();
         $params['user_id'] = $user_id;
@@ -65,18 +51,29 @@ class EmployerController extends BaseController
 
     // verwijderen vacature
     #[Route('/{user_id}/verwijder/{vacature_id}', name: 'verwijder_vacature', methods: 'POST')]
+    #[Template()]
     public function removeVacature(Request $request, $vacature_id) {
         $result = $this->vs->removeVacature($vacature_id);
         return($result);
     }
 
-    // bekijk sollicitanten
-    #[Route('/{user_id}/{vacature_id}/sollicitanten', name: 'vacature_sollicitanten')]
+    // bekijk sollicitaties
+    #[Route('/{vacature_id}/sollicitaties', name: 'vacature_sollicitaties')]
     #[Template()]
-    public function showSollicitanten($user_id, $vacature_id) {
-    
+    public function showSollicitanties($vacature_id) {
+        $sollicitatie = $this->ss->getSollicitaties($vacature_id);
+        return(['sollicitaties' => $sollicitaties]);
     }
 
-    // uitnodigen 
+    // uitnodigen
+    #[Route('/{user_id}/{vacature_id}/uitnodigen', name: 'uitnodigen', methods: 'POST')]
+    #[Template()] 
+    public function uitnodigen(Request $request, $user_id, $vacature_id) {
+        $params = $request->request->all();
+        $params['user_id'] = $user_id;
+        $params['vacature_id'] = $vacature_id;
 
+        $result = $this->ss->saveSollicitatie($params);
+        return($result);
+    }
 }
