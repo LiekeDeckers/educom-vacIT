@@ -5,11 +5,26 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+
+use App\Service\UserService;
+use App\Service\VacatureService;
+use App\Service\SollicitatieService;
 
 #[Route('/employer')]
 class EmployerController extends BaseController
 {
+    private $us; 
+    private $vs;
+    private $ss;
+
+    public function __construct(UserService $us, VacatureService $vs, SollicitatieService $ss) {
+        $this->us = $us;
+        $this->vs = $vs;      
+        $this->ss = $ss;            
+    }
+
     // find employer (user)
     #[Route('/{user_id}', name: 'employer_profiel')]
     #[Template()]
@@ -22,7 +37,7 @@ class EmployerController extends BaseController
     #[Route('/{user_id}/mijnvacatures', name: 'employer_vacatures')]
     #[Template()]
     public function showVacatures($user_id) {
-        $vacature = $this->vs->mijnVacatures($user_id);
+        $vacatures = $this->vs->mijnVacatures($user_id);
         return(['vacatures' => $vacatures]);
     }
 
@@ -60,8 +75,8 @@ class EmployerController extends BaseController
     // bekijk sollicitaties
     #[Route('/{vacature_id}/sollicitaties', name: 'vacature_sollicitaties')]
     #[Template()]
-    public function showSollicitanties($vacature_id) {
-        $sollicitatie = $this->ss->getSollicitaties($vacature_id);
+    public function showSollicitaties($vacature_id) {
+        $sollicitaties = $this->ss->getSollicitaties($vacature_id);
         return(['sollicitaties' => $sollicitaties]);
     }
 
