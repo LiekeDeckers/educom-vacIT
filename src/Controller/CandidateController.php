@@ -24,6 +24,7 @@ class CandidateController extends BaseController
         $this->ss = $ss;            
     } 
 
+    // bekijk profiel
     #[Route('/profiel/{user_id}', name: 'candidate_profiel')]
     #[Template()]
     public function showUser($user_id) {
@@ -31,6 +32,7 @@ class CandidateController extends BaseController
         return(['user' => $user]);
     }
 
+    // toevoegen/update user
     #[Route('/save', name: 'candidate_save')]
     #[Template()]
     public function saveUser() {
@@ -53,6 +55,7 @@ class CandidateController extends BaseController
         ];
     }
 
+    // mijn sollicitaties
     #[Route('/mijnsollicitaties/{user_id}', name: 'candidate_solicitaties')]
     #[Template()]
     public function showSollicitaties($user_id) {
@@ -60,6 +63,7 @@ class CandidateController extends BaseController
         return(['sollicitaties' => $sollicitaties]);
     }
 
+    // toevoegen sollicitatie
     #[Route('/{user_id}/add/{vacature_id}', name: 'candidate_add_solicitatie')]
     #[Template()]
     public function addSollicitatie() {
@@ -74,4 +78,6 @@ class CandidateController extends BaseController
         return($result);
     }
 
+    //verwijder sollicitatie
+    
 }

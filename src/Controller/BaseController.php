@@ -10,13 +10,10 @@ use Psr\Log\LoggerInterface;
 class BaseController extends AbstractController
 {
 
-    
-
-    /*
-    public function index(): Response {
+    public function checkUser() {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
-        return new Response('Well hi there '.$user->getFirstName());
+        return $user;
     }
-    */
+
 }

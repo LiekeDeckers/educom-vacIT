@@ -21,6 +21,7 @@ class HomepageController extends BaseController
         $this->vs = $vs;      
     } 
     
+    // overzicht vacatures
     #[Route('/', name: 'homepage')]
     #[Template()]
     public function index () {

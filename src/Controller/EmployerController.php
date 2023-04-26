@@ -8,11 +8,33 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EmployerController extends BaseController
 {
-    #[Route('/employer', name: 'employer')]
-    public function index(): Response
-    {
-        return $this->render('employer/index.html.twig', [
-            'controller_name' => 'EmployerController',
-        ]);
+    // find employer (user)
+
+    // find mijnVacatures
+
+    // toevoegen/update vacature
+    #[Route('/add/{id}', name: 'add_vacature')]
+    public function addVacature() {
+        $vacature = [
+            "id" => 3,
+            "logo_id" => 2,
+            "user_id" => 2,
+            "titel" => 'Software Developper',
+            "datum" => '2023-04-24',
+            "niveau" => 'Medior',
+            "plaats" => 'Sittard',
+            "omschrijving" => 'blablabla',
+        ];
+  
+        $result = $this->vs->saveVacature($vacature);
+        return($result);
     }
+    
+    // verwijderen vacature
+
+    // bekijk sollicitanten
+
+    // uitnodigen 
+
+    
 }

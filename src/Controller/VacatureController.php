@@ -18,29 +18,12 @@ class VacatureController extends BaseController
         $this->vs = $vs;      
     }
 
+    // vacature bekijken
     #[Route('/show/{id}', name: 'show_vacature')]
     #[Template()]
     public function showVacature($id) {
         $vacature = $this->vs->getVacature($id);
         return(['vacature' => $vacature]);
-    }
-
-    #[Route('/add/{id}', name: 'add_vacature')]
-    #[Template()] 
-    public function addVacature() {
-        $vacature = [
-            "id" => 3,
-            "titel" => 'Software Developper',
-            "datum" => '2023-04-24',
-            "niveau" => 'Medior',
-            "plaats" => 'Sittard',
-            "omschrijving" => 'blablabla',              
-            "logo" => 2,
-            "user" => 2,
-        ];
-  
-        $result = $this->vs->saveVacature($vacature);
-        return($result);
     }
         
 }

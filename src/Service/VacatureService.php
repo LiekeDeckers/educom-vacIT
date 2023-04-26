@@ -46,8 +46,8 @@ class VacatureService {
             "niveau" => $params["niveau"],
             "plaats" => $params["plaats"],
             "omschrijving" => $params["omschrijving"],              
-            "logo" => $this->fetchLogo($params["logo"]),
-            "user" => $this->fetchUser($params["user"]),
+            "logo" => $this->fetchLogo($params["logo_id"]),
+            "user" => $this->fetchUser($params["user_id"]),
         ];
   
           $result = $this->vacatureRepository->saveVacature($data);
