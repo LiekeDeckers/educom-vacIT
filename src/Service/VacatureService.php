@@ -28,14 +28,16 @@ class VacatureService {
         return($this->logoRepository->getLogo($id));
     }
 
-    public function getAllVacatures()
-    {
+    public function getAllVacatures() {
         return $this->vacatureRepository->getAllVacatures();
     }
 
-    public function getVacature($id)
-    {
-        return $this->vacatureRepository->getVacature($id);
+    public function getVacature($vacature_id) {
+        return $this->vacatureRepository->getVacature($vacature_id);
+    }
+
+    public function mijnVacatures($user_id) {
+        return $this->vacatureRepository->mijnVacatures($user_id);
     }
     
     public function saveVacature($params) {
@@ -54,8 +56,8 @@ class VacatureService {
           return($result);
     }
     
-    public function removeVacature($id)
+    public function removeVacature($vacature_id)
     {
-        return $this->vacatureRepository->removeVacature($id);
+        return $this->vacatureRepository->removeVacature($vacature_id);
     }
 }

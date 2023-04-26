@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 use App\Service\UserService;
 use App\Service\VacatureService;
@@ -79,5 +80,5 @@ class CandidateController extends BaseController
     }
 
     //verwijder sollicitatie
-    
+
 }
