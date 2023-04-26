@@ -24,13 +24,9 @@ class HomepageController extends BaseController
     // overzicht vacatures
     #[Route('/', name: 'homepage')]
     #[Template()]
-    public function index () {
+    public function showVacatures () {
         $vacatures = $this->vs->getAllVacatures();
         return($vacatures);
     }
 
-    #[Route('/backhome', name: 'backhome')]
-    public function backhome() {
-        return $this->redirectToRoute('homepage');
-    }
 }
