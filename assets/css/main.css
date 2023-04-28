@@ -1,0 +1,51 @@
+/**
+ VACIT MAIN.CSS
+ */
+
+:root {
+
+    /* FONTS */
+    --titles: "bebas-neue";
+    --headings: "roboto-condensed";
+    --regular: "Arial";
+
+    /* COLORS */
+    --gray: #333333;
+    --orange: #F15A24;
+
+    --white: #FFF;
+    --black: #000;
+
+}
+
+
+/** HEADING **/
+h1 {
+    font-family: var(--titles) !important;
+    font-size: 42px;
+}
+
+h2 {
+    font-family: var(--headings) !important;
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+
+/** HTML / BODY **/
+html, body {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 16px;
+}
+
