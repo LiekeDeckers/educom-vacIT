@@ -10,6 +10,8 @@
     <ul>
         {% for vacature in vacatures %}
             <li>{{ vacature.titel }}</li>
+            <input type="submit" name="btnSubmit" value="Verwijderen">
+
         {% endfor %}
     </ul>
 {% endblock %}

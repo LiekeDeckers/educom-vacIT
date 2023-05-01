@@ -3,5 +3,9 @@
 {% block title %}Hello CandidateController!{% endblock %}
 
 {% block body %}
+    {% for sollicitatie in sollicitaties %}
+        <li>{{ sollicitatie.user.voornaam }}, {{ sollicitatie.user.motivatie }} </li>
+        <input type="submit" name="btnSubmit" value="Uitnodigen">
 
+    {% endfor %}
 {% endblock %}

@@ -65,7 +65,6 @@ class EmployerController extends BaseController
 
     //update vacature
     #[Route('/update/{vacature_id}', name: 'update_vacature')]
-    //#[Template()]
     public function updateVacature(Request $request, $vacature_id) {
         $user = $this->getUser();
         $vacature = $this->vs->getVacature($vacature_id);
@@ -75,25 +74,26 @@ class EmployerController extends BaseController
 
     // verwijderen vacature
     #[Route('/verwijder/{vacature_id}', name: 'verwijder_vacature')]
-    //#[Template()]
     public function removeVacature(Request $request, $vacature_id) {
         $user = $this->getUser();
-        $vacature_id = $this->getVacature();
+        $vacature = $this->vs->getVacature($vacature_id);
 
-        return $this->vs->removeVacature($vacature_id);
+        return $this->vs->removeVacature($vacature);
     }
 
     // bekijk sollicitaties
     #[Route('/sollicitaties/{vacature_id}', name: 'vacature_sollicitaties')]
     #[Template()]
     public function showSollicitaties($vacature_id) {
-        $sollicitaties = $this->ss->getSollicitaties($vacature_id);
+        $user = $this->getUser();
+        $vacature = $this->vs->getVacature($vacature_id);
+
+        $sollicitaties = $this->ss->getSollicitaties($vacature);
         return(['sollicitaties' => $sollicitaties]);
     }
 
-    // // uitnodigen
-    // #[Route('/{user_id}/{vacature_id}/uitnodigen', name: 'uitnodigen', methods: 'POST')]
-    // #[Template()] 
+    // uitnodigen
+    //#[Route('/uitnodigen/{vacature_id}/{user_id}', name: 'uitnodigen')]
     // public function uitnodigen(Request $request, $user_id, $vacature_id) {
     //     $params = $request->request->all();
     //     $params['user_id'] = $user_id;

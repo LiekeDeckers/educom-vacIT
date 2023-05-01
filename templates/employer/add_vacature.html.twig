@@ -8,7 +8,7 @@
     
     <form action="{{ path('save_vacature') }}" method="POST">
         <label for="vacature_id"></label>
-        <input type="text" name="vacature_id" value='{{ data.id | default(null) }}'><br>
+        <input type="hidden" name="vacature_id" value='{{ data.id | default(null) }}'><br>
 
         <label for="titel">Titel:</label>
         <input type="text" name="titel" value='{{ data.titel | default(null) }}'><br>
