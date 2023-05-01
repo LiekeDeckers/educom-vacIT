@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CandidateController!{% endblock %}
+{% block title %}Hello!{% endblock %}
 
 {% block body %}
      <h1>Vacature toevoegen</h1>
-    
+    {#  #}
     <form action="{{ path('add_vacature') }}" method="POST">
         <label for="titel">Titel:</label>
         <input type="text" name="titel"><br>
@@ -20,6 +20,9 @@
 
         <label for="omschrijving">Omschrijving:</label>
         <input type="text" name="omschrijving"><br>
+
+        <label for="logo">Logo:</label>
+        <input type="text" name="logo"><br>        
 
         <input type="submit" name="btnSubmit" value="Toevoegen">
 
