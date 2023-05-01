@@ -1,7 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CandidateController!{% endblock %}
+{% block title %}Hello {{ user.voornaam }}!{% endblock %}
 
 {% block body %}
+    <h1>Profiel van {{ user.voornaam }}</h1>
+    
+    <form action="{{ path('save_user') }}" method="POST">
+        <label for="user_id"></label>
+        <input type="hidden" name="user_id" value='{{ data.id | default(null) }}'><br>
 
+        <label for="voornaam">Voornaam:</label>
+        <input type="text" name="voornaam" value='{{ data.voornaam | default(null) }}'><br>
+
+        <label for="achternaam">Achternaam:</label>
+        <input type="text" name="achternaam"><br>
+
+        <label for="geboortedatum">Geboortedatum:</label>
+        <input type="date" name="geboortedatum" value='{{ data.geboortedatum | default(null) }}'><br>
+
+        <label for="plaats">Telefoonnummer:</label>
+        <input type="text" name="telefoonnummer" value='{{ data.telefoonnummer | default(null) }}'><br>
+
+        <label for="adress">Adres:</label>
+        <input type="text" name="adress" value='{{ data.adress | default(null) }}'><br>
+
+        <label for="postcode">Postcode:</label>
+        <input type="text" name="postcode" value='{{ data.postcode | default(null) }}'><br> 
+
+        <label for="woonplaats">Woonplaats:</label>
+        <input type="text" name="woonplaats" value='{{ data.woonplaats | default(null) }}'><br>               
+
+        <label for="motivatie">Motivatie:</label>
+        <input type="text" name="motivatie" value='{{ data.motivatie | default(null) }}'><br>        
+        
+        <label for="cv">CV:</label>
+        <input type="file" name="cv" value='{{ data.cv | default(null) }}'><br>        
+
+        <label for="profielfoto">Profielfoto:</label>
+        <input type="file" name="profielfoto" value='{{ data.profielfoto | default(null) }}'><br>        
+
+        <input type="submit" name="btnSubmit" value="Opslaan">
 {% endblock %}

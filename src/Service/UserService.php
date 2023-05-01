@@ -27,13 +27,13 @@ class UserService {
     public function saveUser($params) {
         $data = [
             "id" => (isset($params["id"]) && $params["id"] != "") ? $params["id"] : null,
-            "username" => $params["username"],
-            "roles" => $params["roles"],
-            "password" => $params["password"],
-            "logo" => $this->fetchLogo($params["logo"]),
+            //"username" => $params["username"],
+            //"roles" => $params["roles"],
+            //"password" => $params["password"],
+            //"logo" => $this->fetchLogo($params["logo_id"]),
             "voornaam" => $params["voornaam"],
             "achternaam" => $params["achternaam"],
-            "gboortedatum" => new \DateTime($params["geboortedatum"]),
+            "geboortedatum" => new \DateTime($params["geboortedatum"]),
             "telefoonnummer" => $params["telefoonnummer"],
             "adress" => $params["adress"],
             "postcode" => $params["postcode"],  
@@ -41,7 +41,7 @@ class UserService {
             "motivatie" => $params["motivatie"],              
             "cv" => $params["cv"],              
             "profielfoto" => $params["profielfoto"],              
-            "bedrijf" => $params["bedrijf"],                          
+            //"bedrijf" => $params["bedrijf"],                          
         ];
   
           $result = $this->userRepository->saveUser($data);

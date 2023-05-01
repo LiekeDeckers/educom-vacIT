@@ -26,32 +26,41 @@ class CandidateController extends BaseController
     } 
 
     // bekijk profiel
-    #[Route('/profiel/{user_id}', name: 'candidate_profiel')]
+    #[Route('/profiel', name: 'candidate_profiel')]
     #[Template()]
-    public function showUser($user_id) {
-        $user = $this->us->getUser($user_id);
+    public function showUser() {
+        $user = $this->getUser();
         return(['user' => $user]);
     }
 
-    // toevoegen user
-    #[Route('/add', name: 'add_candidate', methods: 'POST')]
-    #[Template()]
-    public function addUser(Request $request) {
-        $params = $request->request->all();
+    // save user
+    #[Route('/save', name: 'save_user')]
+    public function saveUser(Request $request) {
+        $user = $this->getUser();
+
+        $params['voornaam'] = $request->get('voornaam');
+        $params['achternaam'] = $request->get('achternaam');
+        $params['geboortedatum'] = $request->get('geboortedatum');
+        $params['telefoonnummer'] = $request->get('telefoonnummer');
+        $params['adress'] = $request->get('adress');
+        $params['postcode'] = $request->get('postcode');
+        $params['woonplaats'] = $request->get('woonplaats');
+        $params['motivatie'] = $request->get('motivatie');
+        $params['cv'] = $request->get('cv');
+        $params['profielfoto'] = $request->get('profielfoto');
+        $params['user_id'] = $user;
 
         $result = $this->us->saveUser($params);
-        return($result);
+       
+        return $this->redirectToRoute('candidate_profiel');
     }
 
     // update user
-    #[Route('/{user_id}/update', name: 'update_candidate', methods: 'POST')]
-    #[Template()]
-    public function updateUser(Request $request, $user_id) {
-        $params = $request->request->all();
-        $params['user_id'] = $user_id;
+    #[Route('/update', name: 'update_candidate')]
+    public function updateUser(Request $request) {
+        $user = $this->getUser(); 
 
-        $result = $this->us->saveUser($params);
-        return($result);
+        return $this->render('candidate/show_user.html.twig', (["data" => $user]));
     }
 
     // mijn sollicitaties
@@ -63,7 +72,7 @@ class CandidateController extends BaseController
     }
 
     // toevoegen sollicitatie
-    #[Route('/{user_id}/{vacature_id}/add', name: 'add_solicitatie', methods: 'POST')]
+    #[Route('/{user_id}/{vacature_id}/add', name: 'add_solicitatie')]
     #[Template()]
     public function addSollicitatie(Request $request, $user_id, $vacature_id) {
         $params = $request->request->all();
@@ -75,7 +84,7 @@ class CandidateController extends BaseController
     }
 
     //verwijder sollicitatie
-    #[Route('/{sollicitatie_id}/verwijder', name: 'verwijder_sollicitatie', methods: 'POST')]
+    #[Route('/{sollicitatie_id}/verwijder', name: 'verwijder_sollicitatie')]
     #[Template()]
     public function removesollicitatie(Request $request, $sollicitatie_id) {
         $result = $this->ss->removeSollicitatie($sollicitatie_id);

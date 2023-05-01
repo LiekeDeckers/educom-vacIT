@@ -30,17 +30,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return($this->find($id));
     }
 
-    public function saveUser($id) {
+    public function saveUser($params) {
         if(isset($params["id"]) && $params["id"] != "") {
             $user = $this->find($params["id"]);
         } else {
             $user = new User();
         }
         
-        $user->setUsername($params["username"]);
-        $user->setRoles($params["roles"]);
-        $user->setPassword($params["password"]);
-        $user->setLogo($params["logo"]);
+        //$user->setUsername($params["username"]);
+        //$user->setRoles($params["roles"]);
+        //$user->setPassword($params["password"]);
+        //$user->setLogo($params["logo"]);
         $user->setVoornaam($params["voornaam"]);
         $user->setAchternaam($params["achternaam"]);
         $user->setGeboortedatum($params["geboortedatum"]);
@@ -51,7 +51,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setMotivatie($params["motivatie"]);
         $user->setCv($params["cv"]);
         $user->setProfielfoto($params["profielfoto"]);
-        $user->setBedrijf($params["bedrijf"]);
+        //$user->setBedrijf($params["bedrijf"]);
 
         $this->_em->persist($user);
         $this->_em->flush();
