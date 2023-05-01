@@ -1,7 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CandidateController!{% endblock %}
+{% block title %}Update vacature{% endblock %}
 
 {% block body %}
+<h1>Vacature bijwerken</h1>
+
+    <form action="{{ path('save_vacature') }}" method="POST">
+        <label for="titel">Titel:</label>
+        <input type="text" name="titel" placeholder="vacature.titel"><br>
+
+        <label for="datum">Datum:</label>
+        <input type="date" name="datum"><br>
+
+        <label for="niveau">Niveau:</label>
+        <input type="text" name="niveau"><br>
+
+        <label for="plaats">Plaats:</label>
+        <input type="text" name="plaats"><br>
+
+        <label for="omschrijving">Omschrijving:</label>
+        <input type="text" name="omschrijving"><br>
+
+        <label for="logo">Logo:</label>
+        <input type="text" name="logo_id"><br>        
+
+        <input type="submit" name="btnSubmit" value="Opslaan">
 
 {% endblock %}

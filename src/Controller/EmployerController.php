@@ -28,11 +28,11 @@ class EmployerController extends BaseController
     }
 
     // mijn vacatures
-    #[Route('/list', name: 'employer_vacatures')]
+    #[Route('/list', name: 'list_vacatures')]
     #[Template()]
-    public function showVacatures($user_id) {
+    public function showVacatures() {
         $user = $this->getUser();
-        $vacatures = $this->vs->mijnVacatures($user_id);
+        $vacatures = $this->vs->mijnVacatures($user);
         return(['vacatures' => $vacatures]);
     }
 
@@ -42,21 +42,11 @@ class EmployerController extends BaseController
     public function addVacature(Request $request) {
         $user = $this->getUser();
         
-        $params['titel'] = $request->get('titel');
-        $params['datum'] = $request->get('datum');
-        $params['niveau'] = $request->get('niveau');
-        $params['plaats'] = $request->get('plaats');
-        $params['omschrijving'] = $request->get('omschrijving');
-        $params['logo_id'] = $request->get('logo_id');
-        $params['user_id'] = $user;
-
-        $result = $this->vs->saveVacature($params);
-       
+        return([]);
     }
 
     // save vacature 
     #[Route('/save', name: 'save_vacature')]
-    //#[Template()]
     public function saveVacature(Request $request) {
         $user = $this->getUser();
 
@@ -70,45 +60,36 @@ class EmployerController extends BaseController
 
         $result = $this->vs->saveVacature($params);
        
-        //return $this->redirectToRoute('employer_vacatures');
+        return $this->redirectToRoute('list_vacatures');
     }
 
-    /*
-    public function addVacature(Request $request, $user_id) {
-        $params = $request->request->all();
-        $params['user_id'] = $user_id;
-
-        $result = $this->vs->saveVacature($params);
-        return($result);
-    }*/
-
     //update vacature
-    // #[Route('/{user_id}/{vacature_id}/update', name: 'update_vacature', methods: 'POST')]
-    // #[Template()]
-    // public function updateVacature(Request $request, $user_id, $vacature_id) {
-    //     $params = $request->request->all();
-    //     $params['user_id'] = $user_id;
-    //     $params['vacature_id'] = $vacature_id;
-
-    //     $result = $this->vs->saveVacature($params);
-    //     return($result);
-    // }
+    #[Route('/update/{vacature_id}', name: 'update_vacature')]
+    //#[Template()]
+    public function updateVacature(Request $request, $vacature_id) {
+        $user = $this->getUser();
+        $vacature = $this->vs->getVacature($vacature_id);
+        
+        return $this->render('employer/add_vacature.html.twig', (["data" => $vacature]));
+    }
 
     // verwijderen vacature
-    // #[Route('/{user_id}/{vacature_id}/verwijder', name: 'verwijder_vacature', methods: 'POST')]
-    // #[Template()]
-    // public function removeVacature(Request $request, $vacature_id) {
-    //     $result = $this->vs->removeVacature($vacature_id);
-    //     return($result);
-    // }
+    #[Route('/verwijder/{vacature_id}', name: 'verwijder_vacature')]
+    //#[Template()]
+    public function removeVacature(Request $request, $vacature_id) {
+        $user = $this->getUser();
+        $vacature_id = $this->getVacature();
 
-    // // bekijk sollicitaties
-    // #[Route('/{vacature_id}/sollicitaties', name: 'vacature_sollicitaties')]
-    // #[Template()]
-    // public function showSollicitaties($vacature_id) {
-    //     $sollicitaties = $this->ss->getSollicitaties($vacature_id);
-    //     return(['sollicitaties' => $sollicitaties]);
-    // }
+        return $this->vs->removeVacature($vacature_id);
+    }
+
+    // bekijk sollicitaties
+    #[Route('/sollicitaties/{vacature_id}', name: 'vacature_sollicitaties')]
+    #[Template()]
+    public function showSollicitaties($vacature_id) {
+        $sollicitaties = $this->ss->getSollicitaties($vacature_id);
+        return(['sollicitaties' => $sollicitaties]);
+    }
 
     // // uitnodigen
     // #[Route('/{user_id}/{vacature_id}/uitnodigen', name: 'uitnodigen', methods: 'POST')]
