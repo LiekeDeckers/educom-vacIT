@@ -1,15 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomepageController!{% endblock %}
+{% block title %}Homepage{% endblock %}
+
+{% block header %}
+<div class="row">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-1">
+        <a style="text-decoration: none" href="/">
+            <h3 style="color: white">Registreren</h3>
+        </a>
+    </div>
+    <div class="col-md-1">
+        <a style="text-decoration: none" href="/">
+            <h3 style="color: white">Inloggen</h3>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
 
 {% block body %}
-{% for vacature in vacatures %}
-            <h2>{{ vacature.titel }}</h2> 
-            <p>{{ vacature.omschrijving }}</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4" style="background-color: pink">
+        </div>
 
-            <a style="text-decoration: none" href="/vacature/show/{{vacature.id}}">
-                <h3 style="background-color: orange; border-radius:20px; width: 120px">Bekijken</h3>
-            </a>
+        <div class="col-md-8">
+            {% for vacature in vacatures %}
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="{{ asset('assets/img/logo/{{ vacature.logo }}') }}" width="200" height="100">
+                    </div>
 
-        {% endfor %}
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                            {#<p>{{ vacature.datum }}</p>#}
+                            </div>
+
+                            <div class="col-md-12">
+                                <h2>{{ vacature.titel }}</h2> 
+                            </div>
+
+                            <div class="col-md-12">
+                            <p>{{ vacature.omschrijving }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a style="text-decoration: none" href="/vacature/show/{{vacature.id}}">
+                            <h3 style="background-color: orange; border-radius:20px; width: 120px">Bekijken</h3>
+                        </a>
+                    </div>
+                </div> 
+                <br><br>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>        
 {% endblock %}
