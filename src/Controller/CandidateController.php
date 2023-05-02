@@ -76,21 +76,23 @@ class CandidateController extends BaseController
     // toevoegen sollicitatie
     #[Route('/add', name: 'add_solicitatie')]
     #[Template()]
-    public function addSollicitatie(Request $request, $vacature_id) {
-       
+    public function addSollicitatie(Request $request) {
+        $user = $this->getUser();
+
         $result = $this->ss->saveSollicitatie($params);
         return($result);
     }
 
     // save sollicitatie
-    #[Route('/savesollicitatie', name: 'save_sollicitatie')]
-    public function saveSollicitatie(Request $request) {
+    #[Route('/savesollicitatie/{vacature_id}', name: 'save_sollicitatie')]
+    public function saveSollicitatie(Request $request, $vacature_id) {
         $user = $this->getUser();
+        $vacature = $this->vs->getVacature($vacature_id);
 
-        $params['id'] = $request->get('id');
-        $params['vacature_id'] = $request->get('vacature_id');
-        $params['user_id'] = $request->get('user_id');
-        $params['uitgenodigd'] = $request->get('uitgenodigd');
+        //$params['id'] = $request->get('id');
+        $params['vacature_id'] = $vacature;
+        $params['user_id'] = $user;
+        $params['uitgenodigd'] = 0;
 
         $result = $this->ss->saveSollicitatie($params);
        
