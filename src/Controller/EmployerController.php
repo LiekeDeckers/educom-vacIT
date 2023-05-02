@@ -92,28 +92,29 @@ class EmployerController extends BaseController
         return(['sollicitaties' => $sollicitaties]);
     }
 
-    // uitnodigen (update sollicitatie)
-    #[Route('/uitnodigen/{sollicitatie_id}', name: 'uitnodigen')]
-    public function uitnodigen(Request $request, $sollicitatie_id) {
-    //     $params = $request->request->all();
-    //     $params['user_id'] = $user_id;
-    //     $params['vacature_id'] = $vacature_id;
-
-    //     $result = $this->ss->saveSollicitatie($params);
-    //     return($result);
-    }
-
     // save sollicitatie
     #[Route('/savesollicitatie', name: 'save_sollicitatie')]
     public function saveSollicitatie(Request $request) {
         $user = $this->getUser();
 
+        $params['id'] = $request->get('id');
         $params['vacature_id'] = $request->get('vacature_id');
         $params['user_id'] = $request->get('user_id');
         $params['uitgenodigd'] = $request->get('uitgenodigd');
 
-        $result = $this->ss->saveSollicitaties($params);
+        $result = $this->ss->saveSollicitatie($params);
        
-        return $this->redirectToRoute('vacature_sollicitaties');
+        return $this->redirectToRoute('list_vacatures');
+        //return $this->redirectToRoute('vacature_sollicitaties', ['id' => $vacature]);
+    }
+
+    // uitnodigen (update sollicitatie)
+    #[Route('/uitnodigen/{sollicitatie_id}', name: 'uitnodigen')]
+    #[Template()]
+    public function uitnodigen(Request $request, $sollicitatie_id) {
+        $user = $this->getUser();
+        $sollicitatie = $this->ss->getSollicitatie($sollicitatie_id);
+
+        return $this->render('employer/uitnodigen.html.twig', (["data" => $sollicitatie]));
     }
 }

@@ -1,23 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sollicitatie{% endblock %}
+{% block title %}Sollicitaties{% endblock %}
 
 {% block body %}
 
-    <h1> Sollicitatie van .. </h1>
+    <h1> Sollicitaties voor de functie </h1>
+
+    {% if sollicitaties|length == 0 %}
+        <h3>Geen sollicitaties</h3>
+    {% endif %}
+    <ul>
+        {% for sollicitatie in sollicitaties %}
+            <li></li>
+            <input type="button" onclick="" value="Bekijken" />
+
+        {% endfor %}
+    </ul>
     
-    <form action="{{ path('save_sollicitatie') }}" method="POST">
-        <label for="id"></label>
-        <input type="text" name="id"><br>
-
-        <label for="vacature_id"></label>
-        <input type="text" name="vacature_id"><br>
-
-        <label for="user_id"></label>
-        <input type="text" name="user_id"><br>
-
-        <label for="uitgenodigd">Uitgenodigen?</label>
-        <input type="text" name="uitgenodigd">*0 = nee, 1 = ja<br>       
-
-        <input type="submit" name="btnSubmit" value="Opslaan">
 {% endblock %}

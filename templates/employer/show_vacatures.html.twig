@@ -9,8 +9,10 @@
     {% endif %}
     <ul>
         {% for vacature in vacatures %}
-            <li>{{ vacature.titel }}</li>
-            <input type="submit" name="btnSubmit" value="Verwijderen">
+            <li>{{ vacature.titel }}: {{ vacature.omschrijving }}</li>
+            <input type="button" onclick="" value="Bewerken" />
+            <input type="button" onclick="" value="Verwijderen" />
+            <input type="button" onclick="" value="Sollicitanten bekijken" />
 
         {% endfor %}
     </ul>

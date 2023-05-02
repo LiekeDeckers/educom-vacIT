@@ -82,6 +82,21 @@ class CandidateController extends BaseController
         return($result);
     }
 
+    // save sollicitatie
+    #[Route('/savesollicitatie', name: 'save_sollicitatie')]
+    public function saveSollicitatie(Request $request) {
+        $user = $this->getUser();
+
+        $params['id'] = $request->get('id');
+        $params['vacature_id'] = $request->get('vacature_id');
+        $params['user_id'] = $request->get('user_id');
+        $params['uitgenodigd'] = $request->get('uitgenodigd');
+
+        $result = $this->ss->saveSollicitatie($params);
+       
+        return $this->redirectToRoute('candidate_solicitaties');
+    }
+
     //verwijder sollicitatie
     #[Route('/verwijder/{sollicitatie_id}', name: 'verwijder_sollicitatie')]
     #[Template()]

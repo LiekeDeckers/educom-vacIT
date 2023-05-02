@@ -23,8 +23,8 @@ class SollicitatieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sollicitatie::class);
     }
 
-    public function getSollicitatie($user_id, $vacature_id) {
-        $sollicitatie = $this->find($user_id, $vacature_id);
+    public function getSollicitatie($sollicitatie_id) {
+        $sollicitatie = $this->find($sollicitatie_id);
         return($sollicitatie);
     }
 
