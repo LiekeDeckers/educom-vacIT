@@ -27,9 +27,9 @@ class UserService {
     public function saveUser($params) {
         $data = [
             "id" => (isset($params["id"]) && $params["id"] != "") ? $params["id"] : null,
-            //"username" => $params["username"],
+            "username" => $params["username"],
             //"roles" => $params["roles"],
-            //"password" => $params["password"],
+            "password" => $params["password"],
             //"logo" => $this->fetchLogo($params["logo_id"]),
             "voornaam" => $params["voornaam"],
             "achternaam" => $params["achternaam"],
