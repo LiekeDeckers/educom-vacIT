@@ -10,9 +10,13 @@
     <ul>
         {% for vacature in vacatures %}
             <li>{{ vacature.titel }}: {{ vacature.omschrijving }}</li>
-            <input type="button" onclick="" value="Bewerken" />
-            <input type="button" onclick="" value="Verwijderen" />
-            <input type="button" onclick="" value="Sollicitanten bekijken" />
+            <a style="text-decoration: none" href="/employer/update/{{vacature.id}}">
+                <h3 style="background-color: orange; border-radius:20px; width: 120px">Bewerken</h3>
+            </a>
+
+            <a style="text-decoration: none" href="/employer/sollicitaties/{{vacature.id}}">
+                <h3 style="background-color: orange; border-radius:20px; width: 120px">Sollicitanten bekijken</h3>
+            </a>
 
         {% endfor %}
     </ul>

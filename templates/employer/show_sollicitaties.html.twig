@@ -11,9 +11,10 @@
     {% endif %}
     <ul>
         {% for sollicitatie in sollicitaties %}
-            <li></li>
-            <input type="button" onclick="" value="Bekijken" />
-
+            <li>{{sollicitatie.user.voornaam}}{{sollicitatie.user.achternaam}}</li>
+            <a style="text-decoration: none" href="/employer/uitnodigen/{{sollicitatie.id}}">
+                <h3 style="background-color: grey; width:100px">Bekijken</h3>
+            </a>
         {% endfor %}
     </ul>
     

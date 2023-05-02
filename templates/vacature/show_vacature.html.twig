@@ -6,6 +6,11 @@
     <h1>{{ vacature.titel }}<h2>
     <p>{{vacature.omschrijving}}<p>
     
-    <p><input type="button" onclick="" value="Solliciteer direct!" /></p>
+    {#<p><input type="button" onclick="" value="Solliciteer direct!" /></p>
+    <button onclick="/savesollicitatie/{vacature_id}">Solliciteer direct!</button>#}
+
+    <a style="text-decoration: none" href="/candidate/savesollicitatie/{{vacature.id}}">
+        <h3 style="background-color: red; border-radius:20px; color: white; width: 120px">Solliciteer direct!</h3>
+    </a>
 
 {% endblock %}

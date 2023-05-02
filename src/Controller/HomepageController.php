@@ -26,7 +26,7 @@ class HomepageController extends BaseController
     #[Template()]
     public function showVacatures () {
         $vacatures = $this->vs->getAllVacatures();
-        return($vacatures);
+        return(['vacatures' => $vacatures]);
     }
 
 }

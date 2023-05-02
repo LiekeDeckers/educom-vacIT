@@ -13,13 +13,13 @@
     
     <form action="{{ path('save_sollicitatie') }}" method="POST">
         <label for="id"></label>
-        <input type="text" name="id" value='{{ data.id | default(null) }}'><br>
+        <input type="hidden" name="id" value='{{ data.id | default(null) }}'><br>
 
         <label for="vacature_id"></label>
-        <input type="text" name="vacature_id" value='{{ data.vacature.id | default(null) }}'><br>
+        <input type="hidden" name="vacature_id" value='{{ data.vacature.id | default(null) }}'><br>
 
         <label for="user_id"></label>
-        <input type="text" name="user_id" value='{{ data.user.id | default(null) }}'><br>
+        <input type="hidden" name="user_id" value='{{ data.user.id | default(null) }}'><br>
 
         <label for="uitgenodigd">Uitgenodigen?</label>
         <input type="text" name="uitgenodigd" value='{{ data.uitgenodigd | default(null) }}'>*0 = nee, 1 = ja<br>       

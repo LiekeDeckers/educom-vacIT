@@ -3,5 +3,10 @@
 {% block title %}Hello CandidateController!{% endblock %}
 
 {% block body %}
+{% for sollicitatie in sollicitaties %}
+            <p>{{ sollicitatie.vacature.datum }}, {{ sollicitatie.vacature.titel }}, 
+            {{ sollicitatie.user.bedrijf }}, {{ sollicitatie.uitgenodigd }} </p>
+            
 
+        {% endfor %}
 {% endblock %}
