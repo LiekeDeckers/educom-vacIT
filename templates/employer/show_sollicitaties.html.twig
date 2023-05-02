@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CandidateController!{% endblock %}
+{% block title %}Sollicitatie{% endblock %}
 
 {% block body %}
-    {% for sollicitatie in sollicitaties %}
-        <li>{{ sollicitatie.user.voornaam }}, {{ sollicitatie.user.motivatie }} </li>
-        <input type="submit" name="btnSubmit" value="Uitnodigen">
 
-    {% endfor %}
+    <h1> Sollicitatie van .. </h1>
+    
+    <form action="{{ path('save_sollicitatie') }}" method="POST">
+        <label for="id"></label>
+        <input type="text" name="id"><br>
+
+        <label for="vacature_id"></label>
+        <input type="text" name="vacature_id"><br>
+
+        <label for="user_id"></label>
+        <input type="text" name="user_id"><br>
+
+        <label for="uitgenodigd">Uitgenodigen?</label>
+        <input type="text" name="uitgenodigd">*0 = nee, 1 = ja<br>       
+
+        <input type="submit" name="btnSubmit" value="Opslaan">
 {% endblock %}

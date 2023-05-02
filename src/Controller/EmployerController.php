@@ -92,14 +92,28 @@ class EmployerController extends BaseController
         return(['sollicitaties' => $sollicitaties]);
     }
 
-    // uitnodigen
-    //#[Route('/uitnodigen/{vacature_id}/{user_id}', name: 'uitnodigen')]
-    // public function uitnodigen(Request $request, $user_id, $vacature_id) {
+    // uitnodigen (update sollicitatie)
+    #[Route('/uitnodigen/{sollicitatie_id}', name: 'uitnodigen')]
+    public function uitnodigen(Request $request, $sollicitatie_id) {
     //     $params = $request->request->all();
     //     $params['user_id'] = $user_id;
     //     $params['vacature_id'] = $vacature_id;
 
     //     $result = $this->ss->saveSollicitatie($params);
     //     return($result);
-    // }
+    }
+
+    // save sollicitatie
+    #[Route('/savesollicitatie', name: 'save_sollicitatie')]
+    public function saveSollicitatie(Request $request) {
+        $user = $this->getUser();
+
+        $params['vacature_id'] = $request->get('vacature_id');
+        $params['user_id'] = $request->get('user_id');
+        $params['uitgenodigd'] = $request->get('uitgenodigd');
+
+        $result = $this->ss->saveSollicitaties($params);
+       
+        return $this->redirectToRoute('vacature_sollicitaties');
+    }
 }
