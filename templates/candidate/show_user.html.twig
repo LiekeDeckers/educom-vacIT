@@ -4,11 +4,22 @@
 
 {% block body %}
 <div class="container-fluid">
+    <form action="{{ path('save_user') }}" method="POST">
+    <label for="user_id"></label>
+        <input type="hidden" name="user_id" value='{{ user.id }}'>
+
+        <label for="username"></label>
+        <input type="hidden" name="username" value='{{ user.username }}'>
+
+        <label for="password"></label>
+        <input type="hidden" name="password" value='{{ user.password }}'>
+
 	<div class="row">
 		<div class="col-md-2">
             Profielfoto
+            <label for="profielfoto">Profielfoto:</label>
+            <input type="file" name="profielfoto" value='{{ user.profielfoto | default(null) }}'>
 		</div>
-
 		<div class="col-md-10">
 			<div class="row">
 				<div class="col-md-12">
@@ -17,38 +28,41 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-                    Voornaam
+                    <label for="voornaam">Voornaam:</label>
+                    <input type="text" name="voornaam" value='{{ user.voornaam | default(null) }}'>
 				</div>
 				<div class="col-md-8">
-                    Achternaam
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-                    Email
+                    <label for="achternaam">Achternaam:</label>
+                    <input type="text" name="achternaam"  value='{{ user.achternaam | default(null) }}'>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-                    Geboortedatum
+                    <label for="geboortedatum">Geboortedatum:</label>
+                    <input type="date" name="geboortedatum" value='{{ user.geboortedatum | date('d-m-Y') | default(null)}}'>
 				</div>
 				<div class="col-md-8">
-                    Telefoonnummer
+                    <label for="plaats">Telefoonnummer:</label>
+                    <input type="text" name="telefoonnummer" value='{{ user.telefoonnummer | default(null) }}'>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-                    Adres
+                    <label for="adress">Adres:</label>
+                    <input type="text" name="adress" value='{{ user.adress | default(null) }}'>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-                    Postcode
+                    <label for="postcode">Postcode:</label>
+                    <input type="text" name="postcode" value='{{ user.postcode | default(null) }}'>
 				</div>
 				<div class="col-md-8">
-                    Plaats
+                    <label for="woonplaats">Woonplaats:</label>
+                    <input type="text" name="woonplaats" value='{{ user.woonplaats | default(null) }}'>
 				</div>
 			</div>
+            <br><br>
 			<div class="row">
 				<div class="col-md-12">
                     <h1 style="color: var(--orange)">Motivatie</h1>
@@ -56,17 +70,20 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-                    Motivatietekst
+                    <label for="motivatie"></label>
+                    <input type="text" name="motivatie" value='{{ user.motivatie | default(null) }}'>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-                    CV
+                    <label for="cv">CV:</label>
+                    <input type="file" name="cv" value='{{ user.cv | default(null) }}'>
 				</div>
 				<div class="col-md-6">
-                    <a style="text-decoration: none" href="">
+                    <a style="text-decoration: none" href="/candidate/update">
                         <i class="fas fa-arrow-right fa-3x" style="color: var(--orange)"></i>
                         <h1 style="color: var(--orange)">Opslaan</h1>
+                        <input type="submit" name="btnSubmit" value="Opslaan">
                     </a>
 				</div>
 			</div>
@@ -75,7 +92,7 @@
 </div>
 
     
-    
+    {#
     <form action="{{ path('save_user') }}" method="POST">
         <label for="user_id"></label>
         <input type="hidden" name="user_id" value='{{ user.id }}'><br>
@@ -117,4 +134,5 @@
         <input type="file" name="profielfoto" value='{{ user.profielfoto | default(null) }}'><br>        
 
         <input type="submit" name="btnSubmit" value="Opslaan">
+    #}
 {% endblock %}
