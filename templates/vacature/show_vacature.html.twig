@@ -1,16 +1,78 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VacatureController!{% endblock %}
+{% block title %} {{vacature.titel}} {% endblock %}
 
 {% block body %}
-    <h1>{{ vacature.titel }}<h2>
-    <p>{{vacature.omschrijving}}<p>
-    
-    {#<p><input type="button" onclick="" value="Solliciteer direct!" /></p>
-    <button onclick="/savesollicitatie/{vacature_id}">Solliciteer direct!</button>#}
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-3">
+            {{vacature.logo.logo}}
+            <img src="assets/img/logo/{{vacature.logo.logo}}" width="200" height="100">
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>{{ vacature.datum|date('d-m-Y')}}</p>
+                </div>
+                <div class="col-md-12">
+                    <h1>{{vacature.titel}} voor {{vacature.user.bedrijf}}<h1>
+                </div>
+                <div class="col-md-6">
+                    <h2>Niveau: {{vacature.niveau}}</h2>
+                </div>
+                <div class="col-md-6">
+                    <h2><i class="fas fa-map-marker-alt" style="color: var(--orange)"></i>&ensp;{{vacature.plaats}}</h2>
+                </div>
+                <div class="col-md-11">
+                    <p>{{vacature.omschrijving}}<p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <a style="text-decoration: none" href="/candidate/savesollicitatie/{{vacature.id}}">
-        <h3 style="background-color: red; border-radius:20px; color: white; width: 120px">Solliciteer direct!</h3>
-    </a>
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <a href="/candidate/savesollicitatie/{{vacature.id}}">
+                <i class="fas fa-arrow-right fa-3x" style="color: var(--orange); float: right"></i>
+            </a>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <a style="text-decoration: none" href="/candidate/savesollicitatie/{{vacature.id}}">
+                        <h1 style="color: var(--orange)">Solliciteer direct</h1>
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    <h3>Meer vacatures van <span style="color: var(--orange)">{{vacature.user.bedrijf}}</span></h3>
+                </div>
+                <div class="col-md-2">
+                    <h4>Datum</h4>
+                </div>
+                <div class="col-md-5">
+                    <h4>Vacature</h4>
+                </div>
+                <div class="col-md-5">
+                    <h4>Niveau</h4>
+                </div>
+
+                {% for vacature in vacature.user.vacatures %}           
+                    <div class="col-md-2">
+                        <p>{{vacature.datum|date('d-m-Y')}}</p>
+                    </div>
+                    <div class="col-md-5">
+                        <a style="text-decoration: none" href="/vacature/show/{{vacature.id}}">
+                            <p>{{vacature.titel}}</p>
+                        </a>
+                    </div>
+                    <div class="col-md-5">
+                        <p>{{vacature.niveau}}</p>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>    
 
 {% endblock %}
