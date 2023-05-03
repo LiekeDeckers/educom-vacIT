@@ -3,8 +3,78 @@
 {% block title %}Hello {{ user.voornaam }}!{% endblock %}
 
 {% block body %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+            Profielfoto
+		</div>
 
-    <h1>Profiel {{ user.voornaam }}</h1>
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-12">
+                    <h1 style="font-size: 48px; color: var(--orange)">Mijn profiel</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+                    Voornaam
+				</div>
+				<div class="col-md-8">
+                    Achternaam
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+                    Email
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+                    Geboortedatum
+				</div>
+				<div class="col-md-8">
+                    Telefoonnummer
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+                    Adres
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+                    Postcode
+				</div>
+				<div class="col-md-8">
+                    Plaats
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+                    <h1 style="color: var(--orange)">Motivatie</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+                    Motivatietekst
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+                    CV
+				</div>
+				<div class="col-md-6">
+                    <a style="text-decoration: none" href="">
+                        <i class="fas fa-arrow-right fa-3x" style="color: var(--orange)"></i>
+                        <h1 style="color: var(--orange)">Opslaan</h1>
+                    </a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+    
     
     <form action="{{ path('save_user') }}" method="POST">
         <label for="user_id"></label>
