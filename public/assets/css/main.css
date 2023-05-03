@@ -7,7 +7,7 @@
     /* FONTS */
     --titles: "bebas-neue";
     --headings: "roboto-condensed";
-    --regular: "Arial";
+    --regular: "Arial"; 
 
     /* COLORS */
     --gray: #333333;
@@ -19,14 +19,12 @@
 }
 
 
-/** HEADING **/
+/** HEADING 
 h1 {
-    font-family: var(--titles) !important;
     font-size: 42px;
 }
 
 h2 {
-    font-family: var(--headings) !important;
     font-size: 32px;
 }
 
@@ -41,11 +39,19 @@ h4 {
 h5 {
     font-size: 14px;
 }
-
+**/
 
 /** HTML / BODY **/
 html, body {
     font-family: Arial, Helvetica, sans-serif !important;
     font-size: 16px;
 }
+
+
+.bebas {
+    font-family: 'bebas-neue' !important; 
+}
+
+.roboto {
+    font-family: 'roboto-condensed' !important; }
 
