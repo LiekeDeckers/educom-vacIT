@@ -7,12 +7,12 @@
     <div class="col-md-10">
     </div>
     <div class="col-md-1">
-        <a style="text-decoration: none" href="/">
+        <a style="text-decoration: none" href="/register">
             <h3 style="color: white">Registreren</h3>
         </a>
     </div>
     <div class="col-md-1">
-        <a style="text-decoration: none" href="/">
+        <a style="text-decoration: none" href="/login">
             <h3 style="color: white">Inloggen</h3>
         </a>
     </div>
@@ -26,33 +26,34 @@
         <div class="col-md-4" style="background-color: pink">
         </div>
 
-        <div class="col-md-8">
-            {% for vacature in vacatures %}
-                <div class="row">
+        <div class="col-md-8 mt-3">
+            {% for vacature in vacatures|slice(0, 3) %}
+                <div class="row" style="height: 150px">
                     <div class="col-md-2">
-                        <img src="{{ asset('assets/img/logo/{{ vacature.logo }}') }}" width="200" height="100">
+                        <img src="assets/img/logo/{{vacature.logo.logo}}" width="200" height="100">
                     </div>
 
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12">
-                            {#<p>{{ vacature.datum }}</p>#}
+                            <p>{{ vacature.datum|date('d-m-Y')}}</p>
                             </div>
 
                             <div class="col-md-12">
-                                <h2>{{ vacature.titel }}</h2> 
+                                <h2 style="color: white">{{ vacature.titel }} voor {{ vacature.user.bedrijf }}</h2> 
                             </div>
 
                             <div class="col-md-12">
-                            <p>{{ vacature.omschrijving }}</p>
+                            <p>{{ vacature.omschrijving }}..</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-2">
-                        <a style="text-decoration: none" href="/vacature/show/{{vacature.id}}">
-                            <h3 style="background-color: orange; border-radius:20px; width: 120px">Bekijken</h3>
-                        </a>
+                        <center><a href="/vacature/show/{{vacature.id}}">
+                            <br>
+                            <i class="fas fa-arrow-right fa-5x" style="color: white"></i>
+                        </a><center>
                     </div>
                 </div> 
                 <br><br>
