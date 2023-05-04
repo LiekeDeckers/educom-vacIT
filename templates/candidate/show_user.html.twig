@@ -41,9 +41,9 @@
             <div class="hex">
                 <div class="hex-background">
                     {% if user.profielfoto == "default" %}
-                        <img src="assets/img/users/persoon.png">
+                        <img src="{{asset ('assets/img/users/persoon.png') }}">
                     {% else %}
-                        <img src="assets/img/users/{{user.profielfoto}}">
+                        <img src="{{asset ('assets/img/users/{{user.profielfoto}}') }}">
                     {% endif %}
                 </div>
             </div>

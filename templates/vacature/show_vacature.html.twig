@@ -2,6 +2,23 @@
 
 {% block title %} {{vacature.titel}} {% endblock %}
 
+{% block header %}
+<div class="row">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-1 mb-2 bebas">
+        <a style="text-decoration: none" href="/register">
+            <h3 style="color: white">Registreren</h3>
+        </a>
+    </div>
+    <div class="col-md-1 mb-2 bebas">
+        <a style="text-decoration: none" href="/login">
+            <h3 style="color: white">Inloggen</h3>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid">
     <div class="row mt-3">
