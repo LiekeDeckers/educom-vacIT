@@ -16,7 +16,15 @@
 
 	<div class="row">
 		<div class="col-md-2">
-            Profielfoto
+            <div class="hex">
+                <div class="hex-background">
+                    {% if user.profielfoto == "default" %}
+                        <img src="assets/img/users/persoon.png">
+                    {% else %}
+                        <img src="assets/img/users/{{user.profielfoto}}">
+                    {% endif %}
+                </div>
+            </div>
             <label for="profielfoto"></label>
             <input type="file" name="profielfoto" value='{{ user.profielfoto | default(null) }}'>
 		</div>
@@ -76,7 +84,8 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-                    <label for="cv">CV:</label>
+                    <i class="fas fa-file fa-3x" style="color: var(--orange)"></i>
+                    <label for="cv"></label>
                     <input type="file" name="cv" value='{{ user.cv | default(null) }}'>
 				</div>
 				<div class="col-md-6 bebas">

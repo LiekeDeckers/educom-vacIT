@@ -2,6 +2,15 @@
 
 {% block title %}Homepage{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/vegas-style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/vegas/vegas.css') }}"/>
+{% endblock %}
+
+{% block javascripts %}
+        <script src="{{ asset('assets/vegas/vegas.js') }}"></script>
+{% endblock %}
+
 {% block header %}
 <div class="row">
     <div class="col-md-10">
@@ -21,16 +30,43 @@
 {% endblock %}
 
 {% block body %}
+<script>
+    $(document).ready( function() {
+        const mySlides = [
+            { src: "assets/img/logo/logo-windows.png" },
+            { src: "assets/img/logo/logo-linux.png" },
+            { src: "assets/img/logo/logo-php.png" },
+        ]
+            
+        $("#background-image").vegas({
+            overlay: 'assets/vegas/overlays/02.png',
+            slides: mySlides
+        })
+    })
+</script>
+
+
 <div class="container-fluid">
     <div class="row" style="background-color: var(--orange)">
-        <div class="col-md-4" style="background-color: pink">
+        <div class="col-md-4">
+            <div class="hex2" style="top: 25%">
+                <div class="hex2-background">
+                    <div class="mySlides">
+                    </div>
+                    <img src="assets/img/logo/logo-windows.png">
+                </div>
+            </div>
         </div>
 
         <div class="col-md-8 mt-3">
             {% for vacature in vacatures|slice(0, 3) %}
                 <div class="row" style="height: 150px">
                     <div class="col-md-2">
-                        <img src="assets/img/logo/{{vacature.logo.logo}}" width="200" height="100">
+                        <div class="hex">
+                            <div class="hex-background">
+                                <img src="assets/img/logo/{{vacature.logo.logo}}">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-6">
