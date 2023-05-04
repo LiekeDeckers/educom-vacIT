@@ -17,7 +17,7 @@
 	<div class="row">
 		<div class="col-md-2">
             Profielfoto
-            <label for="profielfoto">Profielfoto:</label>
+            <label for="profielfoto"></label>
             <input type="file" name="profielfoto" value='{{ user.profielfoto | default(null) }}'>
 		</div>
 		<div class="col-md-10">
@@ -28,38 +28,38 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-                    <label for="voornaam">Voornaam:</label>
-                    <input type="text" name="voornaam" value='{{ user.voornaam | default(null) }}'>
+                    <div class="bebas" style="font-size: 16px"><label for="voornaam">Voornaam</label></div>
+                    <input type="text" name="voornaam" style="border: none; border-bottom: solid 1px var(--orange); font-size: 25px" value='{{ user.voornaam | default(null) }}'>
 				</div>
 				<div class="col-md-8">
-                    <label for="achternaam">Achternaam:</label>
-                    <input type="text" name="achternaam"  value='{{ user.achternaam | default(null) }}'>
+                    <div class="bebas" style="font-size: 16px"><label for="achternaam">Achternaam</label></div>
+                    <input type="text" name="achternaam" style="border: none; border-bottom: solid 1px var(--orange); font-size: 25px" value='{{ user.achternaam | default(null) }}'>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
-                    <label for="geboortedatum">Geboortedatum:</label>
-                    <input type="date" name="geboortedatum" value='{{ user.geboortedatum | date('d-m-Y') | default(null)}}'>
+				<div class="col-md-4 mt-3">
+                    <div class="bebas" style="font-size: 16px"><label for="geboortedatum">Geboortedatum</label></div>
+                    <input type="date" name="geboortedatum" style="border: none; border-bottom: solid 1px var(--orange); font-size: 25px" value='{{ user.geboortedatum | date('d-m-Y') | default(null)}}'>
 				</div>
-				<div class="col-md-8">
-                    <label for="plaats">Telefoonnummer:</label>
-                    <input type="text" name="telefoonnummer" value='{{ user.telefoonnummer | default(null) }}'>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-                    <label for="adress">Adres:</label>
-                    <input type="text" name="adress" value='{{ user.adress | default(null) }}'>
+				<div class="col-md-8 mt-3">
+                    <div class="bebas" style="font-size: 16px"><label for="telefoonnummer">Telefoonnummer</label></div>
+                    <input type="text" name="telefoonnummer" style="border: none; border-bottom: solid 1px var(--orange); font-size: 25px" value='{{ user.telefoonnummer | default(null) }}'>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
-                    <label for="postcode">Postcode:</label>
-                    <input type="text" name="postcode" value='{{ user.postcode | default(null) }}'>
+				<div class="col-md-12 mt-3">
+                    <div class="bebas" style="font-size: 16px"><label for="adress">Adres</label></div>
+                    <input type="text" name="adress" style="border: none; border-bottom: solid 1px var(--orange); font-size: 25px; width: 55%" value='{{ user.adress | default(null) }}'>
 				</div>
-				<div class="col-md-8">
-                    <label for="woonplaats">Woonplaats:</label>
-                    <input type="text" name="woonplaats" value='{{ user.woonplaats | default(null) }}'>
+			</div>
+			<div class="row">
+				<div class="col-md-4 mt-3">
+                    <div class="bebas" style="font-size: 16px"><label for="postcode">Postcode</label></div>
+                    <input type="text" name="postcode" style="border: none; border-bottom: solid 1px var(--orange); font-size: 25px" value='{{ user.postcode | default(null) }}'>
+				</div>
+				<div class="col-md-8 mt-3">
+                    <div class="bebas" style="font-size: 16px"><label for="woonplaats">Woonplaats</label></div>
+                    <input type="text" name="woonplaats" style="border: none; border-bottom: solid 1px var(--orange); font-size: 25px" value='{{ user.woonplaats | default(null) }}'>
 				</div>
 			</div>
             <br><br>
@@ -71,7 +71,7 @@
 			<div class="row">
 				<div class="col-md-12">
                     <label for="motivatie"></label>
-                    <input type="text" name="motivatie" value='{{ user.motivatie | default(null) }}'>
+                    <input type="text" name="motivatie" style="border: none; width: 55%; height: 300px" value='{{ user.motivatie | default(null) }}'>
 				</div>
 			</div>
 			<div class="row">
@@ -80,59 +80,11 @@
                     <input type="file" name="cv" value='{{ user.cv | default(null) }}'>
 				</div>
 				<div class="col-md-6 bebas">
-                    <a style="text-decoration: none" href="/candidate/update">
                         <i class="fas fa-arrow-right fa-3x" style="color: var(--orange)"></i>
-                        <h2 style="color: var(--orange)">Opslaan</h2>
-                        <input type="submit" name="btnSubmit" value="Opslaan">
-                    </a>
+                        <input type="submit" name="btnSubmit" style="border: none; background: none; color: var(--orange); font-size: 35px" value="Opslaan">
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-    
-    {#
-    <form action="{{ path('save_user') }}" method="POST">
-        <label for="user_id"></label>
-        <input type="hidden" name="user_id" value='{{ user.id }}'><br>
-
-        <label for="username"></label>
-        <input type="hidden" name="username" value='{{ user.username }}'><br>
-
-        <label for="password"></label>
-        <input type="hidden" name="password" value='{{ user.password }}'><br>
-
-        <label for="voornaam">Voornaam:</label>
-        <input type="text" name="voornaam" value='{{ user.voornaam | default(null) }}'><br>
-
-        <label for="achternaam">Achternaam:</label>
-        <input type="text" name="achternaam"  value='{{ user.achternaam | default(null) }}'><br>
-
-        <label for="geboortedatum">Geboortedatum:</label>
-        <input type="date" name="geboortedatum"><br>
-
-        <label for="plaats">Telefoonnummer:</label>
-        <input type="text" name="telefoonnummer" value='{{ user.telefoonnummer | default(null) }}'><br>
-
-        <label for="adress">Adres:</label>
-        <input type="text" name="adress" value='{{ user.adress | default(null) }}'><br>
-
-        <label for="postcode">Postcode:</label>
-        <input type="text" name="postcode" value='{{ user.postcode | default(null) }}'><br> 
-
-        <label for="woonplaats">Woonplaats:</label>
-        <input type="text" name="woonplaats" value='{{ user.woonplaats | default(null) }}'><br>               
-
-        <label for="motivatie">Motivatie:</label>
-        <input type="text" name="motivatie" value='{{ user.motivatie | default(null) }}'><br>        
-        
-        <label for="cv">CV:</label>
-        <input type="file" name="cv" value='{{ user.cv | default(null) }}'><br>        
-
-        <label for="profielfoto">Profielfoto:</label>
-        <input type="file" name="profielfoto" value='{{ user.profielfoto | default(null) }}'><br>        
-
-        <input type="submit" name="btnSubmit" value="Opslaan">
-    #}
 {% endblock %}
