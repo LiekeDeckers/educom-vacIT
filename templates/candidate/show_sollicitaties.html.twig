@@ -1,12 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CandidateController!{% endblock %}
+{% block title %}Mijn sollicitaties{% endblock %}
+
+{% block header %}
+<div class="row">
+    <div class="col-md-8">
+    </div>
+    <div class="col-md-1 mb-2 bebas">
+        <a style="text-decoration: none" href="/candidate/profiel">
+            <h3 style="color: white">Mijn profiel</h3>
+        </a>
+    </div>
+    <div class="col-md-2 mb-2 bebas">
+        <a style="text-decoration: none" href="/candidate/mijnsollicitaties">
+            <center><h3 style="color: white">Mijn sollicitaties</h3></center>
+        </a>
+    </div>
+    <div class="col-md-1 mb-2 bebas">
+        <a style="text-decoration: none" href="/">
+            <h3 style="color: white">Uitloggen</h3>
+        </a>
+    </div>
+</div>
+{% endblock %}
 
 {% block body %}
-{% for sollicitatie in sollicitaties %}
-            <p>{{ sollicitatie.vacature.datum }}, {{ sollicitatie.vacature.titel }}, 
-            {{ sollicitatie.user.bedrijf }}, {{ sollicitatie.uitgenodigd }} </p>
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="hex">
+                <div class="hex-background">
+                    {#
+                    {% if sollicitatie.user.profielfoto == "default" %}
+                        <img src="assets/img/users/persoon.png">
+                    {% else %}
+                        <img src="assets/img/users/{{sollicitatie.user.profielfoto}}">
+                    {% endif %}
+                    #}
+                    <img src="{{asset ('assets/img/users/katinka.jpg') }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-12 mb-4 bebas">
+                    <h1 style="font-size: 48px; color: var(--orange)">Mijn sollicitaties</h1>
+                </div>
+
+                <div class="col-md-2 bebas">
+                    <h3>Datum</h3>
+                </div>
+                <div class="col-md-3 bebas">
+                    <h3>Vacature</h3>
+                </div>
+                <div class="col-md-2 bebas">
+                    <h3>Bedrijf</h3>
+                </div>
+                <div class="col-md-2 bebas">
+                    <h3>Uitgenodigd</h3>
+                </div>
+            </div>
+
+            {% for sollicitatie in sollicitaties %}
+                <div class="row">
+                    <div class="col-md-2 mt-2">
+                        <p>{{ sollicitatie.vacature.datum | date('d-m-Y')}}</p>
+                    </div>
+                    <div class="col-md-3 mt-2">
+                        <a style="text-decoration: none" href="/vacature/show/{{sollicitatie.vacature.id}}">
+                            <p style="color: var(--orange)">{{ sollicitatie.vacature.titel }}</p>
+                        </a>
+                    </div>
+                    <div class="col-md-2 mt-2">
+                        <p>{{ sollicitatie.vacature.user.bedrijf }}</p>
+                    </div>
+                    <div class="col-md-2 mt-2">
+                        {% if sollicitatie.uitgenodigd == 1 %}
+                            &emsp;&emsp;&emsp;<i class="fas fa-check fa-2x" style="color: var(--orange)"></i>
+                        {% endif %}
+                    </div>
+                    <hr style="width: 70%">
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+            
             
 
-        {% endfor %}
 {% endblock %}

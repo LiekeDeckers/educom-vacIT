@@ -2,6 +2,28 @@
 
 {% block title %}Hello {{ user.voornaam }}!{% endblock %}
 
+{% block header %}
+<div class="row">
+    <div class="col-md-8">
+    </div>
+    <div class="col-md-1 mb-2 bebas">
+        <a style="text-decoration: none" href="/candidate/profiel">
+            <h3 style="color: white">Mijn profiel</h3>
+        </a>
+    </div>
+    <div class="col-md-2 mb-2 bebas">
+        <a style="text-decoration: none" href="/candidate/mijnsollicitaties">
+            <center><h3 style="color: white">Mijn sollicitaties</h3></center>
+        </a>
+    </div>
+    <div class="col-md-1 mb-2 bebas">
+        <a style="text-decoration: none" href="/">
+            <h3 style="color: white">Uitloggen</h3>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid">
     <form action="{{ path('save_user') }}" method="POST">
